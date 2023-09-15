@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-/* your protos and preprocessors goes here*/
+/* your protos goes here */
+int _putchar(char);
+
 
 #endif /* HEADER */
