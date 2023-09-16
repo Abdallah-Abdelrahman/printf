@@ -9,6 +9,15 @@ int _putbuffer(char *, int);
 int _printf(const char *format, ...);
 char *get_formater(char c, va_list ap);
 char *_put_str(char *str);
+int _putchar(char);
+int _printf(const char *fmt, ...);
+void _puts(char *s);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char *_itoa(int x);
+int _put_1024(char *s);
+void _rev_string(char *s);
+int _strlen(char *s);
+char *_strcat(char *dest, char *src);
 
 /**
  * _int - integer struct
@@ -37,5 +46,6 @@ typedef struct _generic
 	char *c;
 	char *(*func)(void);
 } _generic;
+
 
 #endif /* HEADER */
