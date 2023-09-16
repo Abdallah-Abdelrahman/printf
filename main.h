@@ -10,7 +10,6 @@ int _printf(const char *format, ...);
 char *get_formater(char c, va_list ap);
 char *_put_str(char *str);
 int _putchar(char);
-int _printf(const char *fmt, ...);
 void _puts(char *s);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *_itoa(int x);
