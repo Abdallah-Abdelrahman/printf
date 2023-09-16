@@ -89,13 +89,9 @@ int _printf(char *fmt, ...)
 		}
 		fi++; ri++;
 	}
-
-	res = _realloc(res,size,size + 1);
-
 	_puts(res);
 	va_end(ap);
-
-
-	return (0);
+	free(res);
+	return (size);
 }
 
