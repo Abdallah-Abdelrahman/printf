@@ -48,7 +48,6 @@ int _printf(const char *fmt, ...)
 					break;
 				case 'i':
 					str = _itoa(va_arg(ap, int));
-					_rev_string(str);
 					len  = _strlen(str);
 					res = _realloc(res,size + 1,size + len + 1);
 					_strcat(res, str);
@@ -60,7 +59,6 @@ int _printf(const char *fmt, ...)
 					break;
 				case 'd':
 					str = _itoa(va_arg(ap, int));
-					_rev_string(str);
 					len  = _strlen(str);
 					res = _realloc(res,size + 1,size + len + 1);
 					_strcat(res, str);

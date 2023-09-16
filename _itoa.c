@@ -41,5 +41,7 @@ char *_itoa(int x)
 	}
 	y = _realloc(y, i, i + 1);
 	y[i] = '\0';
+	_rev_string(y);
+
 	return (y);
 }
