@@ -15,8 +15,8 @@ char *get_formater(char c, va_list ap)
 
 	/*TODO: add functions for each specifier */
 	_generic ptr[] = {
-		{"c", (char *(*)(void)) _put_str},
-		{"s", (char *(*)(void)) _put_str},
+		{"c", (void (*)(void)) _put_str},
+		{"s", (void (*)(void)) _put_str},
 		{NULL, NULL}
 	};
 
@@ -28,11 +28,13 @@ char *get_formater(char c, va_list ap)
 			switch (c)
 			{
 				case 'c':
-					return ((((_int *)ptr)[i])
-						.func(va_arg(ap, int)));
+					(((_int *)ptr)[i])
+						.func(va_arg(ap, int));
+					break;
 				case 's':
-					return ((((_str *)ptr)[i])
-						.func(va_arg(ap, char *)));
+					(((_str *)ptr)[i])
+						.func(va_arg(ap, char *));
+					break;
 			}
 		}
 		i++;
