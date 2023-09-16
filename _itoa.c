@@ -11,10 +11,12 @@ char *_itoa(int x)
 	char *y = NULL;
 	if(x == 0)
 	{
-		y = "0";
+		y = _realloc(y, 0, 2);
+		y[0] = '0';
+		y[1] = '\0';
 		return (y);
 	}
-	if (x < 0)
+	else if (x < 0)
 	{
 		neg = 1;
 		x++;
