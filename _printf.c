@@ -7,7 +7,7 @@
  * Return: length of printed string
  */
 
-int _printf(char *fmt, ...)
+int _printf(const char *fmt, ...)
 {
 	va_list ap;
 	int fi = 0, ri = 0,flag = 0, len = 0;

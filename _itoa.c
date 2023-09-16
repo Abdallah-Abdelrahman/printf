@@ -9,7 +9,11 @@ char *_itoa(int x)
 {
 	int i = 0, neg = 0;
 	char *y = NULL;
-
+	if(x == 0)
+	{
+		y = "0";
+		return (y);
+	}
 	if (x < 0)
 	{
 		neg = 1;
