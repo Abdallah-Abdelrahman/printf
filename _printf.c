@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
-#include <stdio.h>
+
 /*
  * _printf - prints text according to format
  * @fmt: string input includes formats and modifiers
@@ -94,4 +94,3 @@ int _printf(const char *fmt, ...)
 	free(res);
 	return (size);
 }
-

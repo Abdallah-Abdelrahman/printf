@@ -9,7 +9,8 @@ char *_itoa(int x)
 {
 	int i = 0, neg = 0;
 	char *y = NULL;
-	if(x == 0)
+
+	if (x == 0)
 	{
 		y = _realloc(y, 0, 2);
 		y[0] = '0';
