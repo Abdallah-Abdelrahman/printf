@@ -1,6 +1,5 @@
 #include "main.h"
 #include <stdarg.h>
-
 /**
  * _printf - prints text according to format
  * @fmt: string input includes formats and modifiers
@@ -14,6 +13,8 @@ int _printf(const char *fmt, ...)
 	unsigned int size = 0;
 	char *res = NULL, *str = NULL;
 
+	if (!fmt || !fmt[0])
+		return (-1);
 	va_start(ap, fmt);
 	while (fmt[fi])
 	{
@@ -29,13 +30,20 @@ int _printf(const char *fmt, ...)
 			{
 				case 'c':
 					res = _realloc(res, size + 1, size + 2);
-					res[ri] = va_arg(ap, int), size++, flag = 0, res[ri + 1] = 0;
-
+					res[ri] = va_arg(ap, int);
+					flag = 0;
+					res[ri + 1] = 0;
 					break;
 				case 's':
-					str = va_arg(ap, char *), len  = _strlen(str);
+					str = va_arg(ap, char *);
+					if (!str)
+						str = "(null)";
+					len  = _strlen(str);
 					res = _realloc(res, size + 1, size + len + 1);
-					_strcat(res, str), size += len,	flag = 0, ri += len - 1;
+					_strcat(res, str);
+					size += len;
+					flag = 0;
+					ri += len - 1;
 					res[ri + 1] = 0;
 					break;
 				case 'i':
@@ -43,7 +51,8 @@ int _printf(const char *fmt, ...)
 					len  = _strlen(str);
 					res = _realloc(res, size + 1, size + len + 1);
 					_strcat(res, str);
-					free(str);
+					if (str)
+						free(str);
 					size += len;
 					flag = 0;
 					ri += len - 1;
@@ -54,7 +63,8 @@ int _printf(const char *fmt, ...)
 					len = _strlen(str);
 					res = _realloc(res, size + 1, size + len + 1);
 					_strcat(res, str);
-					free(str);
+					if (str)
+						free(str);
 					size += len;
 					flag = 0;
 					ri += len - 1;
@@ -80,6 +90,7 @@ int _printf(const char *fmt, ...)
 	}
 	_puts(res);
 	va_end(ap);
-	free(res);
+	if (res)
+		free(res);
 	return (size);
 }
