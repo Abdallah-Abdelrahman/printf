@@ -52,6 +52,7 @@ int _printf(const char *fmt, ...)
 					len  = _strlen(str);
 					res = _realloc(res,size + 1,size + len + 1);
 					_strcat(res, str);
+					free(str);
 					size += len;
 					flag = 0;
 					ri += len - 1;
@@ -63,6 +64,7 @@ int _printf(const char *fmt, ...)
 					len  = _strlen(str);
 					res = _realloc(res,size + 1,size + len + 1);
 					_strcat(res, str);
+					free(str);
 					size += len;
 					flag = 0;
 					ri += len - 1;
