@@ -6,8 +6,7 @@
 char *_rtoa(char *s)
 {
 	char *str = NULL;
-	int i = 0, l = 0;
-	char temp;
+	int  l = 0;
 
 	if (!s)
 		s = "(null)";
