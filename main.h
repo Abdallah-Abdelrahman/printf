@@ -3,10 +3,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdarg.h>
-
+#include <stdio.h>
 /* Important! Delete comment!! */
 #define BUFF 1024
-
 
 /* your protos goes here */
 int _put_buffer(char *, int);
@@ -30,6 +29,18 @@ char *_utoa(unsigned int x);
 char *_otoa(unsigned int x);
 char *_xtoa(unsigned int x);
 char *_Xtoa(unsigned int x);
+
+
+/**
+ * struct _unsigned_int - unsigned int struct
+ * @c: character specifier
+ * @func: function pointer
+ */
+typedef struct _unsigned_int
+{
+	char *c;
+	char *(*func)(unsigned int);
+} _ui;
 
 /**
  * struct _character - char struct
