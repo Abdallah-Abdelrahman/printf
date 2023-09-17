@@ -8,13 +8,10 @@
  * Return: pointer to string,
  * `(null)` in case of `NULL` pointer
  */
-void _put_str(char *str)
+char  *_put_str(char *str)
 {
-	write(1, str, 1);
-#if 0
 	if (!str)
 		return ("(null)");
 
 	return (str);
-#endif
 }

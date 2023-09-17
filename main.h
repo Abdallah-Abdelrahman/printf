@@ -7,8 +7,8 @@
 /* your protos goes here */
 int _putbuffer(char *, int);
 int _printf(const char *, ...);
-char *get_formater(char c, va_list ap);
-void _put_str(char *str);
+void *get_formater(char c, va_list ap);
+char *_put_str(char *str);
 int _putchar(char);
 void _puts(char *s);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
@@ -24,7 +24,7 @@ char *_strcat(char *dest, char *src);
  */
 typedef struct _integer
 {
-	void(*func)(int);
+	char *(*func)(int);
 } _int;
 /**
  * _str - string struct
@@ -32,8 +32,16 @@ typedef struct _integer
  */
 typedef struct _string
 {
-	void(*func)(char *);
+	char *(*func)(char *);
 } _str;
+/**
+ * _double - double struct
+ * @func: function pointer
+ */
+typedef struct _double
+{
+	char *(*func)(double);
+} _lf;
 /**
  * _generic - generic struct
  * @func: function pointer
@@ -41,7 +49,7 @@ typedef struct _string
 typedef struct _generic
 {
 	char *c;
-	void(*func)(void);
+	void (*func)(void);
 } _generic;
 
 
