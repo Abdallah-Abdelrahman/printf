@@ -5,7 +5,6 @@
 #include <stdarg.h>
 
 /* Important! Delete comment!! */
-/* #include <stdio.h> */
 #define BUFF 1024
 
 
@@ -28,8 +27,12 @@ char *_stoa(char *c);
 char *_ctoa(char c);
 char *_utoa(unsigned int x);
 char *_otoa(unsigned int x);
+char *_xtoa(unsigned int x);
+char *_Xtoa(unsigned int x);
+
 /**
  * struct _character - char struct
+ * @c: character specifier
  * @func: function pointer
  */
 typedef struct _character
@@ -39,6 +42,7 @@ typedef struct _character
 } _char;
 /**
  * struct _integer - integer struct
+ * @c: character specifier
  * @func: function pointer
  */
 typedef struct _integer
@@ -48,6 +52,7 @@ typedef struct _integer
 } _int;
 /**
  * struct _string - string struct
+ * @c: character specifier
  * @func: function pointer
  */
 typedef struct _string
@@ -57,6 +62,7 @@ typedef struct _string
 } _str;
 /**
  * struct _double - double struct
+ * @c: character specifier
  * @func: function pointer
  */
 typedef struct _double
@@ -66,6 +72,7 @@ typedef struct _double
 } _lf;
 /**
  * struct _generic - generic struct
+ * @c: character specifier
  * @func: function pointer
  */
 typedef struct _generic

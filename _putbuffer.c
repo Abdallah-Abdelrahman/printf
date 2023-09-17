@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _putbuffer - return pointer to string
+ * _put_buffer - return pointer to string
  * @c: string pointer
  * @len: string length
  *

@@ -13,23 +13,21 @@ int _printf(const char *fmt, ...)
 	char *res = NULL, *str = NULL, tc;
 
 	res = _realloc(res, 0, buf);
-	va_start(ap, fmt);
+	va_start(ap, fmt), res[0] = 0;
+	if (!fmt)
+		exit(98);
 	while (fmt[fi])
 	{
 		if (fmt[fi] == '%')
-		{
 			flag = 1, fi++;
-		}
 		if (flag && fmt[fi] != '%')
 		{
-
 			str = get_formater(fmt[fi], ap);
+			if (!str)
+				exit(99);
 			len = _strlen(str);
 			if (len + _strlen(res) >= buf)
-			{
-				buf += BUFF;
-				res = _realloc(res, buf - BUFF, buf);
-			}
+				buf += BUFF, res = _realloc(res, buf - BUFF, buf);
 			_strcat(res, str), flag = 0, free(str);
 		}
 		else
@@ -46,6 +44,6 @@ int _printf(const char *fmt, ...)
 	}
 	len = _strlen(res);
 	_put_buffer(res, len);
-	va_end(ap),	 free(res);
+	va_end(ap), free(res);
 	return (len);
 }

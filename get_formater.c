@@ -1,8 +1,5 @@
 #include "main.h"
 
-
-
-
 /**
  * get_formater - call the corresponding function,
  * based on the specifier passed to it.
@@ -15,7 +12,6 @@ char *get_formater(char c, va_list ap)
 {
 	int i = 0;
 
-	/*TODO: add ur functions, that handle conversions here */
 	_generic gen[] = {
 		{"c", (void(*)(void))_ctoa},
 		{"i", (void(*)(void))_itoa},
@@ -23,28 +19,35 @@ char *get_formater(char c, va_list ap)
 		{"s", (void(*)(void))_stoa},
 		{"u", (void(*)(void))_utoa},
 		{"o", (void(*)(void))_otoa},
+		{"x", (void(*)(void))_xtoa},
+		{"X", (void(*)(void))_Xtoa},
 
 		{NULL, NULL},
 	};
-
 	while (gen[i].c && gen[i].c[0])
 	{
 		if (c == gen[i].c[0])
 		{
 			switch (c)
 			{
-				case 'i':
-					return (((_int *)gen)[i]).func(va_arg(ap, int));
-				case 's':
-					return (((_str *)gen)[i]).func(va_arg(ap, char *));
 				case 'd':
-					return (((_int *)gen)[i]).func(va_arg(ap, int));
+				case 'i':
+					return ((((_int *)gen)[i]).func(va_arg(ap, int)));
+				case 's':
+					return ((((_str *)gen)[i]).func(va_arg(ap, char *)));
 				case 'c':
 					return (((_char *)gen)[i]).func(va_arg(ap, int));
 				case 'u':
 					return (((_char *)gen)[i]).func(va_arg(ap, unsigned int));
 				case 'o':
 					return (((_char *)gen)[i]).func(va_arg(ap, unsigned int));
+				case 'x':
+					return (((_char *)gen)[i]).func(va_arg(ap, unsigned int));
+				case 'X':
+					return (((_char *)gen)[i]).func(va_arg(ap, unsigned int));
+
+
+
 
 					/* Removed case '%', handled in the _printf*/
 			}
@@ -53,5 +56,5 @@ char *get_formater(char c, va_list ap)
 		i++;
 	}
 
-	return (NULL);
+	exit(100);
 }

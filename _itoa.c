@@ -22,7 +22,7 @@ char *_itoa(int x)
 		neg = 1;
 		x++;
 		x = -x;
-		i += 1;
+		i++;
 		y = _realloc(y, 0, i);
 		y[0] = x % 10 + 48 + 1;
 		x = x / 10;
