@@ -7,7 +7,7 @@
 /* your protos goes here */
 int _putbuffer(char *, int);
 int _printf(const char *, ...);
-void *get_formater(char c, va_list ap);
+char *get_formater(char c, va_list ap);
 char *_put_str(char *str);
 int _putchar(char);
 void _puts(char *s);
@@ -24,6 +24,7 @@ char *_strcat(char *dest, char *src);
  */
 typedef struct _integer
 {
+	char *c;
 	char *(*func)(int);
 } _int;
 /**
@@ -32,6 +33,7 @@ typedef struct _integer
  */
 typedef struct _string
 {
+	char *c;
 	char *(*func)(char *);
 } _str;
 /**
@@ -40,6 +42,7 @@ typedef struct _string
  */
 typedef struct _double
 {
+	char *c;
 	char *(*func)(double);
 } _lf;
 /**

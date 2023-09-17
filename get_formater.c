@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdarg.h>
+#include <stdio.h>
 
 /**
  * test_int - integer
@@ -8,7 +10,7 @@
 char *test_int(int c)
 {
 	(void)c;
-	return ("");
+	return ("integer or character");
 }
 /**
  * test_double - integer
@@ -18,7 +20,7 @@ char *test_int(int c)
 char *test_double(double c)
 {
 	(void)c;
-	return ("");
+	return ("double or float");
 }
 /**
  * test_str - string pointer
@@ -28,7 +30,7 @@ char *test_double(double c)
 char *test_str(char *c)
 {
 	(void)c;
-	return ("");
+	return ("string");
 }
 /**
  * get_formater - call the corresponding function,
@@ -38,43 +40,38 @@ char *test_str(char *c)
  *
  * Return: string pointer
  */
-void *get_formater(char c, va_list ap)
+char *get_formater(char c, va_list ap)
 {
 	int i = 0;
 
 	/*TODO: add ur functions, that handle conversions here */
-	_generic ptr[] = {
-		{"s", (void (*)(void)) test_str},
-		{"f", (void (*)(void)) test_double},
-		{"i", (void (*)(void)) test_int},
-		{"c", (void (*)(void)) test_int},
-		{NULL, NULL}
+	_generic gen[] = {
+		{"c", (void(*)(void))test_int},
+		{"i", (void(*)(void))test_int},
+		{"f", (void(*)(void))test_double},
+		{"s", (void(*)(void))test_str},
+		{NULL, NULL},
 	};
 
-	while (ptr[i].c)
+	while (gen[i].c && gen[i].c[0])
 	{
-		if (ptr[i].c[0] == c)
+		if (c == gen[i].c[0])
 		{
-			/*TODO: add cases for each specifier */
 			switch (c)
 			{
 				case 'i':
-					return (((_int *)ptr)[i])
-						.func(va_arg(ap, int));
-				case 'c':
-					return (((_int *)ptr)[i])
-						.func(va_arg(ap, int));
+					return (((_int *)gen)[i]).func(va_arg(ap, int));
 				case 's':
-					return (((_str *)ptr)[i])
-						.func(va_arg(ap, char *));
+					return (((_str *)gen)[i]).func(va_arg(ap, char *));
 				case 'f':
-					return (((_lf *)ptr)[i])
-						.func(va_arg(ap, double));
+					return (((_lf *)gen)[i]).func(va_arg(ap, double));
+				case 'c':
+					return (((_int *)gen)[i]).func(va_arg(ap, int));
 			}
 		}
+
 		i++;
 	}
 
-	/* incase non-matches */
 	return (NULL);
 }
