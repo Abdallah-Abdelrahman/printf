@@ -1,51 +1,8 @@
 #include "main.h"
-#include <stdarg.h>
-#include <stdio.h>
 
-/**
- * test_int - integer
- * @c: int
- * Return: string pointer
- */
-char *test_int(int c)
-{
-	return (_itoa(c));
-}
-/**
- * test_double - integer
- * @c: double
- * Return: string pointer
- */
-char *test_double(double c)
-{
-	(void)c;
-	return ("double or float");
-}
-/**
- * test_str - string pointer
- * @c: double
- * Return: string pointer
- */
-char *test_str(char *c)
-{
-	(void)c;
-	return (c);
-}
-/**
- * test_str - string pointer
- * @c: double
- * Return: string pointer
- */
-char *test_char(char c)
-{
-	char *str;
-	str = malloc(sizeof(char) * 2);
 
-	str[0] = c;
-	str[1] = 0;
 
-	return (str);
-}
+
 /**
  * get_formater - call the corresponding function,
  * based on the specifier passed to it.
@@ -60,10 +17,10 @@ char *get_formater(char c, va_list ap)
 
 	/*TODO: add ur functions, that handle conversions here */
 	_generic gen[] = {
-		{"c", (void(*)(void))test_char},
-		{"i", (void(*)(void))test_int},
-		{"f", (void(*)(void))test_double},
-		{"s", (void(*)(void))test_str},
+		{"c", (void(*)(void))_ctoa},
+		{"i", (void(*)(void))_itoa},
+		{"d", (void(*)(void))_itoa},
+		{"s", (void(*)(void))_stoa},
 		{NULL, NULL},
 	};
 
@@ -77,12 +34,11 @@ char *get_formater(char c, va_list ap)
 					return (((_int *)gen)[i]).func(va_arg(ap, int));
 				case 's':
 					return (((_str *)gen)[i]).func(va_arg(ap, char *));
-				case 'f':
-					return (((_lf *)gen)[i]).func(va_arg(ap, double));
+				case 'd':
+					return (((_int *)gen)[i]).func(va_arg(ap, int));
 				case 'c':
-					return (((_int *)gen)[i]).func(va_arg(ap, int));
-				case '%':
-					return (((_int *)gen)[i]).func(va_arg(ap, int));
+					return (((_char *)gen)[i]).func(va_arg(ap, int));
+					/* Removed case '%', handled in the _printf*/
 			}
 		}
 

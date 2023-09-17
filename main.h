@@ -4,11 +4,13 @@
 #include <unistd.h>
 #include <stdarg.h>
 
+/* Important! Delete comment!! */
+/* #include <stdio.h> */
 #define BUFF 1024
 
 
 /* your protos goes here */
-int _putbuffer(char *, int);
+int _put_buffer(char *, int);
 int _printf(const char *, ...);
 char *get_formater(char c, va_list ap);
 char *_put_str(char *str);
@@ -22,8 +24,20 @@ int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 char *_strncat(char *dest, char *src, int n);
+char *_stoa(char *c);
+char *_ctoa(char c);
+
 /**
- * _int - integer struct
+ * struct _character - char struct
+ * @func: function pointer
+ */
+typedef struct _character
+{
+	char *c;
+	char *(*func)(char);
+} _char;
+/**
+ * struct _integer - integer struct
  * @func: function pointer
  */
 typedef struct _integer
@@ -32,7 +46,7 @@ typedef struct _integer
 	char *(*func)(int);
 } _int;
 /**
- * _str - string struct
+ * struct _string - string struct
  * @func: function pointer
  */
 typedef struct _string
@@ -41,7 +55,7 @@ typedef struct _string
 	char *(*func)(char *);
 } _str;
 /**
- * _double - double struct
+ * struct _double - double struct
  * @func: function pointer
  */
 typedef struct _double
@@ -50,7 +64,7 @@ typedef struct _double
 	char *(*func)(double);
 } _lf;
 /**
- * _generic - generic struct
+ * struct _generic - generic struct
  * @func: function pointer
  */
 typedef struct _generic

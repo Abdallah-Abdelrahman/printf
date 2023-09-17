@@ -25,7 +25,7 @@ char *_strcat(char *dest, char *src)
 	return (dest);
 }
 
-#include "main.h"
+
 /**
  * _strncat - function that concatenates two strings
  *			by appending the n bytes from src string to the dest string,
@@ -50,5 +50,7 @@ char *_strncat(char *dest, char *src, int n)
 		dest[l + m] = src[m];
 		m++;
 	}
+
+	dest[l + m] = 0;
 	return (dest);
 }

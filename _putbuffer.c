@@ -7,7 +7,7 @@
  *
  * Return: number of bytes written
  */
-int _putbuffer(char *c, int len)
+int _put_buffer(char *c, int len)
 {
 	return (write(1, c, len));
 }
