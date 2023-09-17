@@ -5,7 +5,7 @@
 #include <stdarg.h>
 
 /* Important! Delete comment!! */
-/* #include <stdio.h> */
+#include <stdio.h>
 #define BUFF 1024
 
 
@@ -26,6 +26,8 @@ char *_strcpy(char *dest, char *src);
 char *_strncat(char *dest, char *src, int n);
 char *_stoa(char *c);
 char *_ctoa(char c);
+void *adjust_book(char *ptr, unsigned int old_size, unsigned int new_size);
+
 
 /**
  * struct _character - char struct
