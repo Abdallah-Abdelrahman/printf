@@ -7,7 +7,6 @@
 /* Important! Delete comment!! */
 #define BUFF 1024
 
-
 /* your protos goes here */
 int _put_buffer(char *, int);
 int _printf(const char *, ...);

@@ -21,6 +21,7 @@ char *_btoa(unsigned int n)
 	ptr = _realloc(ptr, 0, BUFF);
 	while (n > 0)
 	{
+
 		ptr[i] = (n % 2) + 48;
 		 i++, n /= 2;
 	}
