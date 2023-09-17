@@ -9,8 +9,7 @@
  */
 char *test_int(int c)
 {
-	(void)c;
-	return ("integer or character");
+	return (_itoa(c));
 }
 /**
  * test_double - integer
@@ -30,7 +29,22 @@ char *test_double(double c)
 char *test_str(char *c)
 {
 	(void)c;
-	return ("string");
+	return (c);
+}
+/**
+ * test_str - string pointer
+ * @c: double
+ * Return: string pointer
+ */
+char *test_char(char c)
+{
+	char *str;
+	str = malloc(sizeof(char) * 2);
+
+	str[0] = c;
+	str[1] = 0;
+
+	return (str);
 }
 /**
  * get_formater - call the corresponding function,
@@ -46,7 +60,7 @@ char *get_formater(char c, va_list ap)
 
 	/*TODO: add ur functions, that handle conversions here */
 	_generic gen[] = {
-		{"c", (void(*)(void))test_int},
+		{"c", (void(*)(void))test_char},
 		{"i", (void(*)(void))test_int},
 		{"f", (void(*)(void))test_double},
 		{"s", (void(*)(void))test_str},
@@ -66,6 +80,8 @@ char *get_formater(char c, va_list ap)
 				case 'f':
 					return (((_lf *)gen)[i]).func(va_arg(ap, double));
 				case 'c':
+					return (((_int *)gen)[i]).func(va_arg(ap, int));
+				case '%':
 					return (((_int *)gen)[i]).func(va_arg(ap, int));
 			}
 		}
