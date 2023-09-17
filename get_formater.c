@@ -33,15 +33,15 @@ char *get_formater(char c, va_list ap)
 				case 'c':
 					return ((((_char *)gen)[i]).func(va_arg(ap, int)));
 				case 'u':
-					return ((((_char *)gen)[i]).func(va_arg(ap, unsigned int)));
+					return ((((_ui *)gen)[i]).func(va_arg(ap, unsigned int)));
 				case 'o':
-					return ((((_char *)gen)[i]).func(va_arg(ap, unsigned int)));
+					return ((((_ui *)gen)[i]).func(va_arg(ap, unsigned int)));
 				case 'x':
-					return ((((_char *)gen)[i]).func(va_arg(ap, unsigned int)));
+					return ((((_ui *)gen)[i]).func(va_arg(ap, unsigned int)));
 				case 'X':
-					return ((((_char *)gen)[i]).func(va_arg(ap, unsigned int)));
+					return ((((_ui *)gen)[i]).func(va_arg(ap, unsigned int)));
 				case 'b':
-					return ((((_char *)gen)[i]).func(va_arg(ap, unsigned int)));
+					return ((((_ui *)gen)[i]).func(va_arg(ap, unsigned int)));
 			}
 		}
 		i++;

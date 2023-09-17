@@ -13,20 +13,19 @@ char *_otoa(unsigned int x)
 	if (x == 0)
 	{
 		y = _realloc(y, 0, 2);
-		y[0] = '0';
-		y[1] = '\0';
+		y[0] = 48;
+		y[1] = 0;
 		return (y);
 	}
+	y = _realloc(y, 0, BUFF);
 	while (x > 0)
 	{
-		y = _realloc(y, i, i + 1);
 		y[i] = x % 8 + 48;
-		x /= 8;
+		x = x / 8;
 		i++;
 	}
-	y = _realloc(y, i, i + 1);
-	y[i] = '\0';
+	y[i] = 0;
+	y = _realloc(y, BUFF, i + 1);
 	_rev_string(y);
-
 	return (y);
 }
