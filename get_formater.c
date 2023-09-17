@@ -46,8 +46,8 @@ char *get_formater(char c, va_list ap)
 					return ((((_ui *)gen)[i]).func(va_arg(ap, unsigned int)));
 				case 'r':
 					return ((((_str *)gen)[i]).func(va_arg(ap, char *)));
-				case 'R':
-					return ((((_str *)gen)[i]).func(va_arg(ap, char *)));
+				/* case 'R': */
+				/* 	return ((((_str *)gen)[i]).func(va_arg(ap, char *))); */
 			}
 		}
 		i++;
