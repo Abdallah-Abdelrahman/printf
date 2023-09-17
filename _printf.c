@@ -15,7 +15,7 @@ int _printf(const char *fmt, ...)
 	res = _realloc(res, 0, buf);
 	va_start(ap, fmt), res[0] = 0;
 	if (!fmt)
-		return (-1);
+		exit(98);
 	while (fmt[fi])
 	{
 		if (fmt[fi] == '%')
@@ -24,7 +24,7 @@ int _printf(const char *fmt, ...)
 		{
 			str = get_formater(fmt[fi], ap);
 			if (!str)
-				return (-1);
+				exit(99);
 			len = _strlen(str);
 			if (len + _strlen(res) >= buf)
 				buf += BUFF, res = _realloc(res, buf - BUFF, buf);
