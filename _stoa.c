@@ -9,8 +9,8 @@ char *_stoa(char *c)
 {
 	char *s = NULL;
 
-	/* if (!c) */
-	/* 	c = "(null)"; */
+	if (!c)
+		c = "(null)";
 	s = _realloc(s, 0, _strlen(c) + 1);
 	s[0] = 0;
 	_strcat(s, c);

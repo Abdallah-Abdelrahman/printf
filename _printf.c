@@ -23,6 +23,8 @@ int _printf(const char *fmt, ...)
 		if (flag && fmt[fi] != '%')
 		{
 			str = get_formater(fmt[fi], ap);
+			if (!_strcmp(str, "(null)"))
+				exit(99);
 			if (!str)
 				exit(99);
 			len = _strlen(str);
