@@ -27,6 +27,12 @@ int _printf(const char *fmt, ...)
 		{
 			switch (fmt[fi])
 			{
+				case '%':
+					res = _realloc(res, size + 1, size + 2);
+					res[ri] = '%', size++, flag = 0, res[ri + 1] = 0;
+
+					break;
+
 				case 'c':
 					res = _realloc(res, size + 1, size + 2);
 					res[ri] = va_arg(ap, int), size++, flag = 0, res[ri + 1] = 0;
@@ -61,11 +67,7 @@ int _printf(const char *fmt, ...)
 					res[ri + 1] = 0;
 					break;
 				default:
-					res = _realloc(res, size + 1, size + 2);
-					res[ri] = fmt[fi];
-					size++;
-					flag = 0;
-					res[ri + 1] = 0;
+					return (-1);
 					break;
 			}
 		}
