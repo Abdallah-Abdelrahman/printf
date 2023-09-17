@@ -7,8 +7,7 @@
  */
 char *test_int(int c)
 {
-	(void)c;
-	return ("");
+	return (_itoa(c));
 }
 /**
  * test_double - integer
@@ -61,15 +60,24 @@ void *get_formater(char c, va_list ap)
 				case 'i':
 					return (((_int *)ptr)[i])
 						.func(va_arg(ap, int));
+					break;
 				case 'c':
 					return (((_int *)ptr)[i])
 						.func(va_arg(ap, int));
+					break;
 				case 's':
 					return (((_str *)ptr)[i])
 						.func(va_arg(ap, char *));
+					break;
 				case 'f':
 					return (((_lf *)ptr)[i])
 						.func(va_arg(ap, double));
+					break;
+				case '%':
+					return (((_int *)ptr)[i])
+						.func(va_arg(ap, int));
+					break;
+
 			}
 		}
 		i++;

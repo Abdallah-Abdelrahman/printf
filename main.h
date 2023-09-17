@@ -4,6 +4,9 @@
 #include <unistd.h>
 #include <stdarg.h>
 
+#define BUFF 1024
+
+
 /* your protos goes here */
 int _putbuffer(char *, int);
 int _printf(const char *, ...);
@@ -17,7 +20,8 @@ int _put_1024(char *s);
 void _rev_string(char *s);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);
-
+char *_strcpy(char *dest, char *src);
+char *_strncat(char *dest, char *src, int n);
 /**
  * _int - integer struct
  * @func: function pointer
