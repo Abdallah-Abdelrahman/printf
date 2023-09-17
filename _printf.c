@@ -9,7 +9,7 @@
 int _printf(const char *fmt, ...)
 {
 	va_list ap;
-	int fi = 0, flag = 0, len = 0, buf = BUFF;
+	int fi = 0, flag = 0, len = 0, buf = BUFF, err = 0;
 	char *res = NULL, *str = NULL, tc;
 
 	res = _realloc(res, 0, buf);
@@ -23,6 +23,9 @@ int _printf(const char *fmt, ...)
 		if (flag && fmt[fi] != '%')
 		{
 			str = get_formater(fmt[fi], ap);
+			if (!_strcmp(str, "(null)"))
+				err = 1;
+
 			if (!str)
 				exit(99);
 			len = _strlen(str);
@@ -45,5 +48,7 @@ int _printf(const char *fmt, ...)
 	len = _strlen(res);
 	_put_buffer(res, len);
 	va_end(ap), free(res);
+	if (err)
+		exit(101);
 	return (len);
 }
