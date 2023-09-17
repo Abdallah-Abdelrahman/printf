@@ -14,6 +14,8 @@ int _printf(const char *fmt, ...)
 
 	res = _realloc(res, 0, buf);
 	va_start(ap, fmt), res[0] = 0;
+	if (!fmt)
+		return (-1);
 	while (fmt[fi])
 	{
 		if (fmt[fi] == '%')
@@ -25,10 +27,7 @@ int _printf(const char *fmt, ...)
 				return (-1);
 			len = _strlen(str);
 			if (len + _strlen(res) >= buf)
-			{
-				buf += BUFF;
-				res = _realloc(res, buf - BUFF, buf);
-			}
+				buf += BUFF, res = _realloc(res, buf - BUFF, buf);
 			_strcat(res, str), flag = 0, free(str);
 		}
 		else
