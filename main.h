@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdarg.h>
-#include <stdio.h>
 /* Important! Delete comment!! */
 #define BUFF 1024
 
@@ -29,7 +28,7 @@ char *_utoa(unsigned int x);
 char *_otoa(unsigned int x);
 char *_xtoa(unsigned int x);
 char *_Xtoa(unsigned int x);
-
+char *_rtoa(char *s);
 
 /**
  * struct _unsigned_int - unsigned int struct
