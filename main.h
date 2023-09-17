@@ -5,7 +5,6 @@
 #include <stdarg.h>
 
 /* Important! Delete comment!! */
-#include <stdio.h>
 #define BUFF 1024
 
 
@@ -31,6 +30,7 @@ void *adjust_book(char *ptr, unsigned int old_size, unsigned int new_size);
 
 /**
  * struct _character - char struct
+ * @c: character specifier
  * @func: function pointer
  */
 typedef struct _character
@@ -40,6 +40,7 @@ typedef struct _character
 } _char;
 /**
  * struct _integer - integer struct
+ * @c: character specifier
  * @func: function pointer
  */
 typedef struct _integer
@@ -49,6 +50,7 @@ typedef struct _integer
 } _int;
 /**
  * struct _string - string struct
+ * @c: character specifier
  * @func: function pointer
  */
 typedef struct _string
@@ -58,6 +60,7 @@ typedef struct _string
 } _str;
 /**
  * struct _double - double struct
+ * @c: character specifier
  * @func: function pointer
  */
 typedef struct _double
@@ -67,6 +70,7 @@ typedef struct _double
 } _lf;
 /**
  * struct _generic - generic struct
+ * @c: character specifier
  * @func: function pointer
  */
 typedef struct _generic
