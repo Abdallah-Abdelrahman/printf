@@ -21,6 +21,9 @@ char *get_formater(char c, va_list ap)
 		{"i", (void(*)(void))_itoa},
 		{"d", (void(*)(void))_itoa},
 		{"s", (void(*)(void))_stoa},
+		{"u", (void(*)(void))_utoa},
+		{"o", (void(*)(void))_otoa},
+
 		{NULL, NULL},
 	};
 
@@ -38,6 +41,11 @@ char *get_formater(char c, va_list ap)
 					return (((_int *)gen)[i]).func(va_arg(ap, int));
 				case 'c':
 					return (((_char *)gen)[i]).func(va_arg(ap, int));
+				case 'u':
+					return (((_char *)gen)[i]).func(va_arg(ap, unsigned int));
+				case 'o':
+					return (((_char *)gen)[i]).func(va_arg(ap, unsigned int));
+
 					/* Removed case '%', handled in the _printf*/
 			}
 		}

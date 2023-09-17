@@ -26,7 +26,8 @@ char *_strcpy(char *dest, char *src);
 char *_strncat(char *dest, char *src, int n);
 char *_stoa(char *c);
 char *_ctoa(char c);
-
+char *_utoa(unsigned int x);
+char *_otoa(unsigned int x);
 /**
  * struct _character - char struct
  * @func: function pointer
