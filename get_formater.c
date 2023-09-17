@@ -40,5 +40,5 @@ char *get_formater(char c, va_list ap)
 		i++;
 	}
 
-	return (NULL);
+	exit(100);
 }
