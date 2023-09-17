@@ -22,7 +22,7 @@ char *_Xtoa(unsigned int x)
 		y = _realloc(y, i, i + 1);
 		r = x % 16;
 		if (r > 9)
-			r +=7;
+			r += 7;
 		y[i] = r + 48;
 		x /= 16;
 		i++;

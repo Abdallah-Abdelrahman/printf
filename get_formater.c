@@ -13,15 +13,10 @@ char *get_formater(char c, va_list ap)
 	int i = 0;
 
 	_generic gen[] = {
-		{"c", (void(*)(void))_ctoa},
-		{"i", (void(*)(void))_itoa},
-		{"d", (void(*)(void))_itoa},
-		{"s", (void(*)(void))_stoa},
-		{"u", (void(*)(void))_utoa},
-		{"o", (void(*)(void))_otoa},
-		{"x", (void(*)(void))_xtoa},
-		{"X", (void(*)(void))_Xtoa},
-
+		{"c", (void(*)(void))_ctoa}, {"i", (void(*)(void))_itoa},
+		{"d", (void(*)(void))_itoa}, {"s", (void(*)(void))_stoa},
+		{"u", (void(*)(void))_utoa}, {"o", (void(*)(void))_otoa},
+		{"x", (void(*)(void))_xtoa}, {"X", (void(*)(void))_Xtoa},
 		{NULL, NULL},
 	};
 	while (gen[i].c && gen[i].c[0])
@@ -36,25 +31,18 @@ char *get_formater(char c, va_list ap)
 				case 's':
 					return ((((_str *)gen)[i]).func(va_arg(ap, char *)));
 				case 'c':
-					return (((_char *)gen)[i]).func(va_arg(ap, int));
+					return ((((_char *)gen)[i]).func(va_arg(ap, int)));
 				case 'u':
-					return (((_char *)gen)[i]).func(va_arg(ap, unsigned int));
+					return ((((_char *)gen)[i]).func(va_arg(ap, unsigned int)));
 				case 'o':
-					return (((_char *)gen)[i]).func(va_arg(ap, unsigned int));
+					return ((((_char *)gen)[i]).func(va_arg(ap, unsigned int)));
 				case 'x':
-					return (((_char *)gen)[i]).func(va_arg(ap, unsigned int));
+					return ((((_char *)gen)[i]).func(va_arg(ap, unsigned int)));
 				case 'X':
-					return (((_char *)gen)[i]).func(va_arg(ap, unsigned int));
-
-
-
-
-					/* Removed case '%', handled in the _printf*/
+					return ((((_char *)gen)[i]).func(va_arg(ap, unsigned int)));
 			}
 		}
-
 		i++;
 	}
-
 	exit(100);
 }
