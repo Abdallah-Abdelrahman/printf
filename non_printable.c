@@ -18,7 +18,7 @@ char *non_printable(char *s)
 		char c = s[idx];
 
 		ptr[i] = c;
-		if ((c > 0 && c < 32))
+		if ((c > 0 && c < 32) || c >= 127)
 		{
 			hex = _Xtoa(c);
 			len = _strlen(hex);
