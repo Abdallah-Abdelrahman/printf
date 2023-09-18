@@ -10,10 +10,10 @@ char *_btoa(unsigned int n)
 	unsigned int i = 0;
 	char *ptr = NULL;
 
-	if (n == 0)
+	if (n <= 1)
 	{
 		ptr = _realloc(ptr, 0, 2);
-		ptr[0] = 48;
+		ptr[0] = (n % 2) + 48;
 		ptr[1] = 0;
 		return (ptr);
 	}
