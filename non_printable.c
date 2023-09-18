@@ -22,12 +22,11 @@ char *non_printable(char *s)
 		{
 			hex = _Xtoa(c);
 			len = _strlen(hex);
-			ptr[i++] = '\\';
-			ptr[i++] = 'x';
+			ptr[i++] = 92; /* '\\' */
+			ptr[i++] = 120; /* 'x' */
 			if (len < 2)
-			{
-				ptr[i] = '0';
-			}
+				ptr[i] = 48; /* '0' */
+
 			_strcat(ptr, hex);
 			i += len;
 		}
