@@ -32,6 +32,7 @@ char *_Xtoa(unsigned int x);
 char *_rtoa(char *s);   	/* added */
 char *_Rtoa(char *s);   	/* added */
 char *rot13(char *s);		/* added */
+char *non_printable(char *s);
 
 
 /**
