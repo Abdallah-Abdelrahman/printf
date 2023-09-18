@@ -1,5 +1,6 @@
 #include "main.h"
 
+
 /**
  * get_formater - call the corresponding function,
  * based on the specifier passed to it.
@@ -12,12 +13,12 @@ char *get_formater(char c, va_list ap)
 {
 	int i = 0;
 
-	_generic gen[] = {
-		{"c", (void(*)(void))_ctoa}, {"i", (void(*)(void))_itoa},
+	_generic gen[] = {{"c", (void(*)(void))_ctoa}, {"i", (void(*)(void))_itoa},
 		{"d", (void(*)(void))_itoa}, {"s", (void(*)(void))_stoa},
 		{"u", (void(*)(void))_utoa}, {"o", (void(*)(void))_otoa},
 		{"x", (void(*)(void))_xtoa}, {"X", (void(*)(void))_Xtoa},
-		{"b", (void(*)(void))_btoa}, {NULL, NULL},
+		{"b", (void(*)(void))_btoa}, {"r", (void(*)(void))_rtoa},
+		{"R", (void(*)(void))_Rtoa}, {NULL, NULL},
 	};
 	while (gen[i].c && gen[i].c[0])
 	{
@@ -42,6 +43,10 @@ char *get_formater(char c, va_list ap)
 					return ((((_ui *)gen)[i]).func(va_arg(ap, unsigned int)));
 				case 'b':
 					return ((((_ui *)gen)[i]).func(va_arg(ap, unsigned int)));
+				case 'r':
+					return ((((_str *)gen)[i]).func(va_arg(ap, char *)));
+				case 'R':
+					return ((((_str *)gen)[i]).func(va_arg(ap, char *)));
 			}
 		}
 		i++;
