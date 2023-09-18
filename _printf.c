@@ -49,6 +49,6 @@ int _printf(const char *fmt, ...)
 	_put_buffer(res, len);
 	va_end(ap), free(res);
 	if (err)
-		exit(101);
+		return(-1);
 	return (len);
 }
