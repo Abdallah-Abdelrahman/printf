@@ -10,6 +10,8 @@ char *_ptoa(void *addr)
 	char *y = NULL;
 	unsigned long pc = (unsigned long)addr;
 
+	if (!addr)
+		exit(-1);
 	y = _realloc(y, 0, BUFF);
 	while (pc > 0)
 	{
