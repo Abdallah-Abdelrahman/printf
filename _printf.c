@@ -23,9 +23,6 @@ int _printf(const char *fmt, ...)
 		if (flag && fmt[fi] != '%')
 		{
 			str = get_formater(fmt[fi], ap);
-			if (!_strcmp(str, "(null)"))
-				err = 1;
-
 			if (!str)
 				exit(99);
 			len = _strlen(str);
@@ -48,7 +45,5 @@ int _printf(const char *fmt, ...)
 	len = _strlen(res);
 	_put_buffer(res, len);
 	va_end(ap), free(res);
-	if (err)
-		return(-1);
 	return (len);
 }
