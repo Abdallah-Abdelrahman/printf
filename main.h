@@ -29,10 +29,21 @@ char *_utoa(unsigned int x);
 char *_otoa(unsigned int x);
 char *_xtoa(unsigned int x);
 char *_Xtoa(unsigned int x);
-char *_rtoa(char *s);   	/* added */
-char *_Rtoa(char *s);   	/* added */
-char *rot13(char *s);		/* added */
+char *_rtoa(char *s);   	
+char *_Rtoa(char *s);   	
+char *rot13(char *s);		
 char *non_printable(char *s);
+char *_ptoa(void *z);
+/**
+ * struct _void - void struct
+ * @c: character specifier
+ * @func: function pointer
+ */
+typedef struct _void
+{
+	char *c;
+	char *(*func)(void *);
+} _v;
 
 
 /**

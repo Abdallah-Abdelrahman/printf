@@ -19,7 +19,7 @@ char *get_formater(char c, va_list ap)
 		{"x", (void(*)(void))_xtoa}, {"X", (void(*)(void))_Xtoa},
 		{"b", (void(*)(void))_btoa}, {"r", (void(*)(void))_rtoa},
 		{"R", (void(*)(void))_Rtoa}, {"S", (void(*)(void))non_printable},
-		{NULL, NULL},
+		{"p", (void(*)(void))_ptoa}, {NULL, NULL},
 	};
 	while (gen[i].c && gen[i].c[0])
 	{
@@ -39,6 +39,9 @@ char *get_formater(char c, va_list ap)
 					return ((((_ui *)gen)[i]).func(va_arg(ap, unsigned int)));
 				case 'r': case 'R':
 					return ((((_str *)gen)[i]).func(va_arg(ap, char *)));
+				case 'p':
+					return ((((_v *)gen)[i]).func(va_arg(ap, void *)));
+
 			}
 		}
 		i++;
