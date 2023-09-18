@@ -30,7 +30,9 @@ char *_otoa(unsigned int x);
 char *_xtoa(unsigned int x);
 char *_Xtoa(unsigned int x);
 char *_rtoa(char *s);   	/* added */
-char *rot13(char *s);
+char *_Rtoa(char *s);   	/* added */
+char *rot13(char *s);		/* added */
+
 
 /**
  * struct _unsigned_int - unsigned int struct

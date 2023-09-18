@@ -24,21 +24,22 @@ char *rot13(char *s)
 	return (s);
 }
 /**
- * _rtoa - function that reverses a string.
+ * _Rtoa - function that returns encoded string using rot13.
  * @s: pointer to a string.
+ * Return: str
  */
-char *_rtoa(char *s)
+char *_Rtoa(char *s)
 {
 	char *str = NULL;
 	int  l = 0;
 
 	if (!s)
 		s = "(null)";
-	l = _strlen(str);
+	l = _strlen(s);
 	str = _realloc(str, 0, l + 1);
 	str[0] = 0;
-
-	_strcpy(str, rot13(s));
+	_strcat(str, s);
+	rot13(str);
 	return (str);
 }
 

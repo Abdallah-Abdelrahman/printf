@@ -9,7 +9,7 @@
 int _printf(const char *fmt, ...)
 {
 	va_list ap;
-	int fi = 0, flag = 0, len = 0, buf = BUFF, err = 0;
+	int fi = 0, flag = 0, len = 0, buf = BUFF;
 	char *res = NULL, *str = NULL, tc;
 
 	res = _realloc(res, 0, buf);

@@ -13,15 +13,12 @@ char *get_formater(char c, va_list ap)
 {
 	int i = 0;
 
-	_generic gen[] = {
-		{"c", (void(*)(void))_ctoa}, {"i", (void(*)(void))_itoa},
+	_generic gen[] = {{"c", (void(*)(void))_ctoa}, {"i", (void(*)(void))_itoa},
 		{"d", (void(*)(void))_itoa}, {"s", (void(*)(void))_stoa},
 		{"u", (void(*)(void))_utoa}, {"o", (void(*)(void))_otoa},
 		{"x", (void(*)(void))_xtoa}, {"X", (void(*)(void))_Xtoa},
 		{"b", (void(*)(void))_btoa}, {"r", (void(*)(void))_rtoa},
-		{"R", (void(*)(void))_Rtoa},
-
-		{NULL, NULL},
+		{"R", (void(*)(void))_Rtoa}, {NULL, NULL},
 	};
 	while (gen[i].c && gen[i].c[0])
 	{
