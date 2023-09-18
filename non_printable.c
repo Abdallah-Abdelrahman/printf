@@ -9,7 +9,7 @@
  */
 char *non_printable(char *s)
 {
-	int len = 0, i = 0, j = 0, idx = 0;
+	int len = 0, i = 0, idx = 0;
 	char *ptr = 0, *hex = 0;
 
 	ptr = _realloc(ptr, i, BUFF);
