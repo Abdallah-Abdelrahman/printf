@@ -14,8 +14,8 @@ int _printf(const char *fmt, ...)
 
 	res = _realloc(res, 0, buf);
 	va_start(ap, fmt), res[0] = 0;
-	if (!fmt)
-		exit(98);
+	if (!fmt || !fmt[0])
+		return (-1);
 	while (fmt[fi])
 	{
 		if (fmt[fi] == '%')
