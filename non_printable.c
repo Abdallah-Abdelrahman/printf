@@ -15,6 +15,8 @@ char *non_printable(char *s)
 	if (!s)
 		s = "(null)";
 	ptr = _realloc(ptr, i, BUFF);
+	if (!ptr)
+		return (NULL);
 	for (idx = 0; s && s[idx]; idx++, i++)
 	{
 		char c = s[idx];
@@ -28,12 +30,12 @@ char *non_printable(char *s)
 			ptr[i++] = 120; /* 'x' */
 			if (len < 2)
 				ptr[i] = 48; /* '0' */
-
 			_strcat(ptr, hex);
 			i += len;
 		}
 	}
 	ptr = _realloc(ptr, BUFF, i + 1);
-
+	if (!ptr)
+		return (NULL);
 	return (ptr);
 }
