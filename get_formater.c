@@ -11,7 +11,7 @@
 char *get_formater(char c, va_list ap, char *res)
 {
 	int i = 0;
-	(void)res;
+	/* (void)res; */
 
 	_generic gen[] = {{"c", (void(*)(void))_ctoa}, {"i", (void(*)(void))_itoa},
 		{"d", (void(*)(void))_itoa}, {"s", (void(*)(void))_stoa},

@@ -28,7 +28,9 @@ int _printf(const char *fmt, ...)
 			len = _strlen(str);
 			if (len + _strlen(res) >= buf)
 				buf += BUFF, res = _realloc(res, buf - BUFF, buf);
-			_strcat(res, str), flag = 0, (str ? free(str) : exit(99));
+			_strcat(res, str), flag = 0;
+			if (str)
+				free(str);
 		}
 		else
 		{
