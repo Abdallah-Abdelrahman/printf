@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * _stoa - string pointer
  * @c: string

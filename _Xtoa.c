@@ -3,7 +3,6 @@
  * _Xtoa - convert unsigned integer to hex string
  * @x: unsigned integer to convert to hex string
  * Return: converted string
- *
  */
 char *_Xtoa(unsigned int x)
 {
@@ -30,6 +29,5 @@ char *_Xtoa(unsigned int x)
 	y = _realloc(y, i, i + 1);
 	y[i] = '\0';
 	_rev_string(y);
-
 	return (y);
 }

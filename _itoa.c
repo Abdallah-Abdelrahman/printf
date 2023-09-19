@@ -3,7 +3,6 @@
  * _itoa - convert integer to string
  * @x: integer to convert to string
  * Return: converted string
- *
  */
 char *_itoa(int x)
 {
@@ -43,6 +42,5 @@ char *_itoa(int x)
 	y = _realloc(y, i, i + 1);
 	y[i] = '\0';
 	_rev_string(y);
-
 	return (y);
 }

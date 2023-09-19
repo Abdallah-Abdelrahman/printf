@@ -25,6 +25,8 @@ int _printf(const char *format, ...)
 		if (flag && format[fi] != '%')
 		{
 			str = get_formater(format[fi], ap, res);
+			if (!str)
+				return (-1);
 			len = _strlen(str);
 			if (len + _strlen(res) >= buf)
 				buf += BUFF, res = _realloc(res, buf - BUFF, buf);

@@ -1,8 +1,8 @@
 #include "main.h"
 /**
  * rot13 - function that encodes a string using rot13.
- *		can only use one if and 2 loops
- *		cant use switch
+ * Description: can only use one if and 2 loops
+ * cant use switch
  * @s: string to encode
  * Return: s
  */
