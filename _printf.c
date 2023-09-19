@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 	int fi = 0, flag = 0, len = 0, buf = BUFF;
 	char *res = NULL, *str = NULL, tc;
 
-	if (!format || (format[0] == '%' && !format[1]))
+	if (!format || (format[0] == '%' && !format[1]) || !format[0])
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
@@ -25,8 +25,6 @@ int _printf(const char *format, ...)
 		if (flag && format[fi] != '%')
 		{
 			str = get_formater(format[fi], ap, res);
-			if (!str)
-				exit(99);
 			len = _strlen(str);
 			if (len + _strlen(res) >= buf)
 				buf += BUFF, res = _realloc(res, buf - BUFF, buf);
