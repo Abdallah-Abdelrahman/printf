@@ -13,7 +13,7 @@ char *justify(char s, int m, char *f, char *arg)
 {
 	int i = 0;
 	char *ptr = arg;
-	unsigned int x = atoi(arg);
+	unsigned int x = _atoi(arg);
 	_fc fc = {0, 0, 0, 0};
 
 	for (i = 0; f[i]; i++)
@@ -41,7 +41,7 @@ char *justify(char s, int m, char *f, char *arg)
 				if (fc.s || fc.p)
 					return (NULL);
 				fc.s = 1;
-				ptr = (flag_space(x));
+				ptr = (flag_space(arg));
 				break;
 		}
 	}

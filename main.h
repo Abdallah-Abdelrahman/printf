@@ -38,7 +38,7 @@ char *non_printable(char *s);
 char *_ptoa(void *z);
 void *_nchar(int  *n, char *res);
 char *flag_hash(unsigned int x, int flag);
-char *flag_space(unsigned int x);
+char *flag_space(char *x);
 char *flag_plus(unsigned int x);
 char *get_flag(char *c, int *len);
 int get_modifier(char *fmt, int *idx);
@@ -48,6 +48,7 @@ char *pad(char *buf, int n, int flag);
 int get_specifier(char c);
 int power(int, int);
 char *flag_handler(char *format, int *fi, va_list ap, char *res);
+int _atoi(char *s);
 
 /**
  * struct _flag_count - flags struct
