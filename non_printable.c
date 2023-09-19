@@ -7,7 +7,7 @@
 char *non_printable(char *s)
 {
 	int len = 0, i = 0, idx = 0, buf = BUFF;
-	char *ptr = 0, *hex = 0;
+	char *ptr = 0, *hex = 0, c;
 
 	if (!s)
 		s = "(null)";
@@ -16,7 +16,7 @@ char *non_printable(char *s)
 		return (NULL);
 	for (idx = 0; s && s[idx]; idx++, i++)
 	{
-		char c = s[idx];
+		c = s[idx];
 		ptr = ((i >= buf) ? _realloc(ptr, buf, buf + BUFF) : ptr);
 		if (!ptr)
 			free(ptr), exit(98);
