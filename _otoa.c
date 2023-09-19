@@ -3,7 +3,6 @@
  * _otoa - convert unsigned integer to octal string
  * @x: unsigned integer to convert to octal string
  * Return: converted string
- *
  */
 char *_otoa(unsigned int x)
 {

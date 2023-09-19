@@ -1,8 +1,7 @@
 #include "main.h"
-
 /**
  * get_formater - call the corresponding function,
- * based on the specifier passed to it.
+ * Description: based on the specifier passed to it.
  * @c: specifier
  * @ap: variable argument pointer
  * @res: result buffer
@@ -11,7 +10,6 @@
 char *get_formater(char c, va_list ap, char *res)
 {
 	int i = 0;
-	/* (void)res; */
 
 	_generic gen[] = {{"c", (void(*)(void))_ctoa}, {"i", (void(*)(void))_itoa},
 		{"d", (void(*)(void))_itoa}, {"s", (void(*)(void))_stoa},
@@ -44,7 +42,8 @@ char *get_formater(char c, va_list ap, char *res)
 					return ((((_v *)gen)[i]).func(va_arg(ap, void *)));
 				case 'n':
 					return ((((_ip *)gen)[i]).func(va_arg(ap, int *), res));
-
+				default:
+					return (NULL);
 			}
 		}
 		i++;

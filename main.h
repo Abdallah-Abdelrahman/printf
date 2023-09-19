@@ -9,7 +9,8 @@
 #endif
 /* your protos goes here */
 int _put_buffer(char *, int);
-int _printf(const char *, ...);
+int _printf(const char *format, ...);
+char *_make_result(const char *format, char *res, va_list ap, int buf);
 char *get_formater(char c, va_list ap, char *res);
 char *_put_str(char *str);
 int _putchar(char);
