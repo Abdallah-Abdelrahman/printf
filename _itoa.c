@@ -6,12 +6,12 @@
  */
 char *_itoa(int x)
 {
-	int i = 0, neg = 0;
+	int i = 0, neg = 0, buf = BUFF;
 	char *y = NULL;
 
+	y = _realloc(y, 0, buf);
 	if (x == 0)
 	{
-		y = _realloc(y, 0, 2);
 		y[0] = '0';
 		y[1] = '\0';
 		return (y);
@@ -22,24 +22,29 @@ char *_itoa(int x)
 		x++;
 		x = -x;
 		i++;
-		y = _realloc(y, 0, i);
 		y[0] = x % 10 + 48 + 1;
 		x = x / 10;
 	}
 	while (x > 0)
 	{
-		y = _realloc(y, i, i + 1);
+		y = ((i >= buf) ? _realloc(y, buf, buf + BUFF) : y);
+		if (!y)
+			free(y), exit (98);
+		buf = (i >= buf) ? buf + BUFF : buf;
 		y[i] = x % 10 + 48;
 		x /= 10;
 		i++;
 	}
 	if (neg == 1)
 	{
-		y = _realloc(y, i, i + 1);
+		y = ((i >= buf) ? _realloc(y, buf, buf + BUFF) : y);
+		if (!y)
+			free(y), exit (98);
+		buf = (i >= buf) ? buf + BUFF : buf;
 		y[i] = '-';
 		i++;
 	}
-	y = _realloc(y, i, i + 1);
+	y = _realloc(y, buf, i + 1);
 	y[i] = '\0';
 	_rev_string(y);
 	return (y);
