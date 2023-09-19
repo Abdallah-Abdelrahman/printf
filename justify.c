@@ -10,31 +10,39 @@
  *
  * Return: 0 as exit status
  */
-char *justify(char s, char m, char f, char *arg)
+char *justify(char s, char m, char *f, char *arg)
 {
+	int i = 0, flag = 1;
 	char *ptr = arg;
 	unsigned int x = atoi(arg);
 
 	(void)m;
 
-	printf("pad(m) = %c\n", m);
-	switch (f)
+	for (i = 0; f[i]; i++)
 	{
-		case '#':
-			ptr = (s == 'X' ? flag_hash(x, 1) : flag_hash(x, 0));
-			break;
-		case '+':
-			ptr = (flag_plus(x));
-			break;
-		case ' ':
-			ptr = (flag_space(x));
-			break;
+		if (!flag && f[i] == '+')
+		{
+			ptr = 0;
+			return (ptr);
+		}
+		switch (f[i])
+		{
+			case '#':
+				ptr = (s == 'X' ? flag_hash(x, 1) : flag_hash(x, 0));
+				break;
+			case '+':
+				ptr = (flag_plus(x));
+				break;
+			case '-':
+				ptr = (flag_plus(x));
+				break;
+			case ' ':
+				flag = 0;
+				ptr = (flag_space(x));
+				break;
+		}
 	}
-	if (m)
-	{
-		ptr = pad(ptr, m - '0', f == '-' ? 0 : 1);
 
-	}
 	return (ptr);
 }
 
@@ -74,26 +82,59 @@ char *pad(char *buf, int n, int flag)
  * get_flag - check for flags
  * Description: check fo these flags `+, -, ' ', #`,
  * and then increment the length of buffer when found.
- * @c: flag
+ * @addr: address after '%'
  * @idx: current cursor of buffer
  *
- * Return: flag on success,
- * 0 otherwise.
+ * Return: pointer to flags,
+ * NULL otherwise.
  */
-char get_flag(char c, int *idx)
+char *get_flag(char *addr, int *idx)
 {
-	char f = 0;
+	int i = *idx, j = 0, flag = 1;
+	char *f = 0;
+
+	f = _realloc(f, 0, BUFF);
+	for (i = 0; flag; i++)
+	{
+		switch (addr[i])
+		{
+			case '+':
+			case '#':
+			case '-':
+			case ' ':
+				*idx += 1;
+				f[j++] = addr[i];
+				break;
+			default:
+				flag = 0;
+				break;
+		}
+	}
+	f[j] = 0;
+	f = _realloc(f, BUFF, j + 1);
+	return (f);
+}
+
+/**
+ * get_specifier - check if character is specifier
+ * @c: char
+ *
+ * Return: 1 if not specifier,
+ * 0 otherwise
+ */
+int get_specifier(char c)
+{
 
 	switch (c)
 	{
-		case '+':
-		case '#':
-		case '-':
-		case ' ':
-			*idx += 1;
-			return (c);
+
+
+		case 'd': case 'i': case 's':
+		case 'u': case 'o': case 'x': case 'X':
+			return (0);
+		default:
+			return (1);
 	}
-	return (f);
 }
 /**
  * get_modifier - check to see if there's any modifiers length

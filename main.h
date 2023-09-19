@@ -40,11 +40,13 @@ void *_nchar(int  *n, char *res);
 char *flag_hash(unsigned int x, int flag);
 char *flag_space(unsigned int x);
 char *flag_plus(unsigned int x);
-char get_flag(char c, int *len);
+char *get_flag(char *c, int *len);
 char get_modifier(char c, int *len);
 int _isdigit(int c);
-char *justify(char c, char m, char f, char *arg);
+char *justify(char c, char m, char *f, char *arg);
 char *pad(char *buf, int n, int flag);
+int get_specifier(char c);
+
 
 /**
  * struct _flags - flags struct
