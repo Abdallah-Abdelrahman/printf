@@ -31,8 +31,6 @@ int _printf(const char *fmt, ...)
 			_strcat(res, str), flag = 0;
 			if (str)
 				free(str);
-			else
-				return (-1);
 		}
 		else
 		{
