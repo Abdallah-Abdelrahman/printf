@@ -11,6 +11,8 @@ char *_stoa(char *c)
 	if (!c)
 		c = "(null)";
 	s = _realloc(s, 0, _strlen(c) + 1);
+	if (!s)
+		return (NULL);
 	s[0] = 0;
 	_strcat(s, c);
 	return (s);

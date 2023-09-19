@@ -11,8 +11,10 @@ char *_ptoa(void *addr)
 	unsigned long pc = (unsigned long)addr;
 
 	if (!addr)
-		exit(-1);
+		return (NULL);
 	y = _realloc(y, 0, BUFF);
+	if (!y)
+		return (NULL);
 	while (pc > 0)
 	{
 		y[i++] = pc % 16 < 10 ? pc % 16 + 48 : pc % 16 + 87;
@@ -22,6 +24,8 @@ char *_ptoa(void *addr)
 	y[i++] = '0';
 	y[i++] = 0;
 	y = _realloc(y, BUFF, i);
+	if (!y)
+		return (NULL);
 	_rev_string(y);
 	return (y);
 }
