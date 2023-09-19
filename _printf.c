@@ -29,11 +29,11 @@ int _printf(const char *format, ...)
 	res = _realloc(res, 0, buf);
 	if (!res || !format_tester(format))
 		return (-1);
-		va_start(ap, format), res[0] = 0;
-		res = _make_result(format, res, ap, buf);
-		if (!res)
-			return (-1);
-		len = _strlen(res), _put_buffer(res, len), va_end(ap), free(res);
+	va_start(ap, format), res[0] = 0;
+	res = _make_result(format, res, ap, buf);
+	if (!res)
+		return (-1);
+	len = _strlen(res), _put_buffer(res, len), va_end(ap), free(res);
 	return (len);
 }
 

@@ -9,7 +9,7 @@ char *_ptoa(void *addr)
 {
 	int i = 0;
 	char *y = NULL;
-	unsigned long pc = (unsigned long)addr, zero = 0;
+	unsigned long pc = (unsigned long)addr;
 
 	if (!addr)
 	{
