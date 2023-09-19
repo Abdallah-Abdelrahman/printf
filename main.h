@@ -4,12 +4,13 @@
 #include <unistd.h>
 #include <stdarg.h>
 /* Important! Delete comment!! */
+#ifndef BUFF
 #define BUFF 1024
-
+#endif
 /* your protos goes here */
 int _put_buffer(char *, int);
 int _printf(const char *, ...);
-char *get_formater(char c, va_list ap);
+char *get_formater(char c, va_list ap, char *res);
 char *_put_str(char *str);
 int _putchar(char);
 void _puts(char *s);
@@ -34,7 +35,7 @@ char *_Rtoa(char *s);
 char *rot13(char *s);
 char *non_printable(char *s);
 char *_ptoa(void *z);
-
+void *_nchar(int  *n, char *res);
 /**
  * struct _void - void struct
  * @c: character specifier
@@ -46,6 +47,16 @@ typedef struct _void
 	char *(*func)(void *);
 } _v;
 
+/**
+ * struct _intptr - void struct
+ * @c: character specifier
+ * @func: function pointer
+ */
+typedef struct _intptr
+{
+	char *c;
+	void *(*func)(int *, char *);
+} _ip;
 
 /**
  * struct _unsigned_int - unsigned int struct
