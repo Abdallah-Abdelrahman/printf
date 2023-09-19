@@ -46,8 +46,6 @@ int _printf(const char *format, ...)
 		}
 		fi++;
 	}
-	len = _strlen(res);
-	_put_buffer(res, len);
-	va_end(ap), free(res);
+	len = _strlen(res), _put_buffer(res, len), va_end(ap), free(res);
 	return (len);
 }
