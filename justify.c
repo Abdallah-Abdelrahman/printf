@@ -13,7 +13,6 @@ char *justify(char s, int m, char *f, char *arg)
 {
 	int i = 0;
 	char *ptr = arg;
-	unsigned int x = _atoi(arg);
 	_fc fc = {0, 0, 0, 0};
 
 	for (i = 0; f[i]; i++)
@@ -21,10 +20,10 @@ char *justify(char s, int m, char *f, char *arg)
 		switch (f[i])
 		{
 			case '#':
-				if (fc.h)
+				if (fc.h || fc.s)
 					return (NULL);
 				fc.h = 1;
-				ptr = (s == 'X' ? flag_hash(x, 1) : flag_hash(x, 0));
+				ptr = flag_hash(arg, s == 'o' ? 0 : 1);
 				break;
 			case '-':
 				if (fc.n)
@@ -35,10 +34,10 @@ char *justify(char s, int m, char *f, char *arg)
 				if (fc.p || fc.s)
 					return (NULL);
 				fc.p = 1;
-				ptr = (flag_plus(x));
+				ptr = (flag_plus(arg));
 				break;
 			case ' ':
-				if (fc.s || fc.p)
+				if (fc.s || fc.p || fc.h)
 					return (NULL);
 				fc.s = 1;
 				ptr = (flag_space(arg));
@@ -50,6 +49,7 @@ char *justify(char s, int m, char *f, char *arg)
 		ptr = pad(ptr, m, !fc.n);
 	}
 
+	free(arg);
 	return (ptr);
 }
 
@@ -81,7 +81,7 @@ char *pad(char *buf, int n, int flag)
 	len = _strlen(ptr);
 	ptr = _realloc(ptr, BUFF, len + 1);
 
-	free(buf);
+	/*free(buf);*/
 	return (ptr);
 }
 

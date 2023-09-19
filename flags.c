@@ -7,21 +7,24 @@
  *
  * Return: string pointer
  */
-char *flag_hash(unsigned int x, int flag)
+char *flag_hash(char *x, int flag)
 {
-	unsigned int len = 0;
-	char *ptr = 0, *tmp = 0;
+	char *ptr = 0;
 
-	ptr = _realloc(ptr, 0, 3);
-	ptr[0] = '0';
-	ptr[1] = 'x';
-	ptr[2] = '\0';
-	tmp = flag ? _Xtoa(x) : _xtoa(x);
-	_strcat(ptr, tmp);
-	len = _strlen(ptr);
-	ptr = _realloc(ptr, 3, len + 1);
-	ptr[len] = 0;
-	free(tmp);
+	if (flag)
+	{
+		ptr = _realloc(ptr, 0, 3 + _strlen(x));
+		ptr[0] = '0';
+		ptr[1] = 'x';
+		ptr[2] = '\0';
+	}
+	else
+	{
+		ptr = _realloc(ptr, 0, 2 + _strlen(x));
+		ptr[0] = '0';
+		ptr[1] = '\0';
+	}
+	_strcat(ptr, x);
 
 	return (ptr);
 }
@@ -32,20 +35,14 @@ char *flag_hash(unsigned int x, int flag)
  *
  * Return: string pointer
  */
-char *flag_plus(unsigned int x)
+char *flag_plus(char *x)
 {
-	unsigned int len = 0;
-	char *ptr = 0, *tmp = 0;
+	char *ptr = 0;
 
-	ptr = _realloc(ptr, 0, 2);
+	ptr = _realloc(ptr, 0, 2 + _strlen(x));
 	ptr[0] = '+';
 	ptr[1] = 0;
-	tmp = _utoa(x);
-	_strcat(ptr, tmp);
-	len = _strlen(ptr);
-	ptr = _realloc(ptr, 2, len + 1);
-	ptr[len] = 0;
-	free(tmp);
+	_strcat(ptr, x);
 
 	return (ptr);
 }
@@ -64,7 +61,6 @@ char *flag_space(char *x)
 	ptr[0] = ' ';
 	ptr[1] = 0;
 	_strcat(ptr, x);
-	free(x);
 
 	return (ptr);
 }
