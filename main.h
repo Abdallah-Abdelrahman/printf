@@ -34,6 +34,7 @@ char *_Rtoa(char *s);
 char *rot13(char *s);
 char *non_printable(char *s);
 char *_ptoa(void *z);
+
 /**
  * struct _void - void struct
  * @c: character specifier

@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 /**
  * get_formater - call the corresponding function,
  * based on the specifier passed to it.
@@ -29,22 +28,19 @@ char *get_formater(char c, va_list ap)
 			{
 				case 'd': case 'i':
 					return ((((_int *)gen)[i]).func(va_arg(ap, int)));
-				case 's': case 'S':
+				case 's': case 'S': case 'r': case 'R':
 					return ((((_str *)gen)[i]).func(va_arg(ap, char *)));
 				case 'c':
 					return ((((_char *)gen)[i]).func(va_arg(ap, int)));
-				case 'u': case 'o':
-				case 'x': case 'X':
+				case 'u': case 'o': case 'x': case 'X':
 				case 'b':
 					return ((((_ui *)gen)[i]).func(va_arg(ap, unsigned int)));
-				case 'r': case 'R':
-					return ((((_str *)gen)[i]).func(va_arg(ap, char *)));
 				case 'p':
 					return ((((_v *)gen)[i]).func(va_arg(ap, void *)));
-
 			}
 		}
 		i++;
 	}
 	exit(100);
 }
+
