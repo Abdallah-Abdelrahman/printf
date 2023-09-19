@@ -2,29 +2,29 @@
 
 /**
  * _printf - prints text according to format
- * @fmt: string input includes formats and modifiers
+ * @format: string input includes formats and modifiers
  * Return: length of printed string
  */
 
-int _printf(const char *fmt, ...)
+int _printf(const char *format, ...)
 {
 	va_list ap;
 	int fi = 0, flag = 0, len = 0, buf = BUFF;
 	char *res = NULL, *str = NULL, tc;
 
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
 	res = _realloc(res, 0, buf);
-	va_start(ap, fmt), res[0] = 0;
-	if (!fmt || (fmt[0] == '%' && !fmt[1]))
-		return (-1);
-	if (fmt[0] == '%' && fmt[1] == ' ' && !fmt[2])
-		return (-1);
-	while (fmt[fi])
+	va_start(ap, format), res[0] = 0;
+	while (format[fi])
 	{
-		if (fmt[fi] == '%')
+		if (format[fi] == '%')
 			flag = 1, fi++;
-		if (flag && fmt[fi] != '%')
+		if (flag && format[fi] != '%')
 		{
-			str = get_formater(fmt[fi], ap, res);
+			str = get_formater(format[fi], ap, res);
 			if (!str)
 				exit(99);
 			len = _strlen(str);
@@ -41,7 +41,7 @@ int _printf(const char *fmt, ...)
 				buf += BUFF;
 				res = _realloc(res, buf - BUFF, buf);
 			}
-			tc = (fmt[fi]);
+			tc = (format[fi]);
 			_strncat(res, &tc, 1), flag = 0;
 		}
 		fi++;
