@@ -20,7 +20,7 @@ void _rev_string(char *s);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
-int _strcmp(char *s1, char *s2);			/* added */
+int _strcmp(char *s1, char *s2);
 char *_strncat(char *dest, char *src, int n);
 char *_stoa(char *c);
 char *_ctoa(char c);
@@ -29,9 +29,9 @@ char *_utoa(unsigned int x);
 char *_otoa(unsigned int x);
 char *_xtoa(unsigned int x);
 char *_Xtoa(unsigned int x);
-char *_rtoa(char *s);   	
-char *_Rtoa(char *s);   	
-char *rot13(char *s);		
+char *_rtoa(char *s);
+char *_Rtoa(char *s);
+char *rot13(char *s);
 char *non_printable(char *s);
 char *_ptoa(void *z);
 /**
