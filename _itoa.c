@@ -12,16 +12,12 @@ char *_itoa(int x)
 	y = _realloc(y, 0, buf);
 	if (x == 0)
 	{
-		y[0] = '0';
-		y[1] = '\0';
+		y[0] = '0', y[1] = '\0';
 		return (y);
 	}
 	else if (x < 0)
 	{
-		neg = 1;
-		x++;
-		x = -x;
-		i++;
+		neg = 1, x++, x = -x, i++;
 		y[0] = x % 10 + 48 + 1;
 		x = x / 10;
 	}
@@ -29,7 +25,7 @@ char *_itoa(int x)
 	{
 		y = ((i >= buf) ? _realloc(y, buf, buf + BUFF) : y);
 		if (!y)
-			free(y), exit (98);
+			free(y), exit(98);
 		buf = (i >= buf) ? buf + BUFF : buf;
 		y[i] = x % 10 + 48;
 		x /= 10;
@@ -39,7 +35,7 @@ char *_itoa(int x)
 	{
 		y = ((i >= buf) ? _realloc(y, buf, buf + BUFF) : y);
 		if (!y)
-			free(y), exit (98);
+			free(y), exit(98);
 		buf = (i >= buf) ? buf + BUFF : buf;
 		y[i] = '-';
 		i++;
