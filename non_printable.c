@@ -1,8 +1,5 @@
 #include "main.h"
-<<<<<<< HEAD
 
-=======
->>>>>>> a4bdd2663810d8c7a5efda3816771d987282dcb5
 /**
  * non_printable - write your short description
  * @s: string pointer

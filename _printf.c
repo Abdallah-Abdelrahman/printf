@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * format_tester - tests the format str
@@ -49,6 +50,7 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 {
 	int	len = 0, fi = 0, flag = 0;
 	char *str = NULL, tc;
+	char fchar, mchar;
 
 	while (format[fi])
 	{
@@ -56,7 +58,13 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 			flag = 1, fi++;
 		if (flag && format[fi] != '%')
 		{
+			/* TODO: handle Flags, Modifiers, Precisions, Field length */
+			/* TODO: length of written buffer must increase as well */
+			/* WARNING: watchout for `fi` mutation */
+			fchar = get_flag(format[fi], &fi);
+			mchar = get_modifier(format[fi], &fi);
 			str = get_formater(format[fi], ap, res);
+			str = justify(format[fi], mchar, fchar, str);
 			if (!str)
 			{
 				free(res);

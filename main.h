@@ -44,7 +44,7 @@ char get_flag(char c, int *len);
 char get_modifier(char c, int *len);
 int _isdigit(int c);
 char *justify(char c, char m, char f, char *arg);
-
+char *pad(char *buf, int n, int flag);
 
 /**
  * struct _flags - flags struct
