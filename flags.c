@@ -1,16 +1,18 @@
 #include "main.h"
 
 /**
- * get_flag - write your short description
+ * get_flag - check for flags
+ * Description: check fo these flags `+, -, ' ', #`,
+ * and then increment the length of buffer when found.
  * @c: number to format
  * @len: address of buffer length
  *
- * Return: string pointer
+ * Return: flag on success,
+ * 0 otherwise.
  */
 char get_flag(char c, int *len)
 {
 	char f = 0;
-
 
 	switch (c)
 	{
@@ -24,11 +26,13 @@ char get_flag(char c, int *len)
 	return (f);
 }
 /**
- * get_modifier - write your short description
+ * get_modifier - check to see if there's any modifiers length
+ * Description: modifiers range 0-9
  * @c: character to check
  * @len: address of buffer length
  *
- * Return: modifier or 0
+ * Return: modifier on success,
+ * 0 otherwise.
  */
 char get_modifier(char c, int *len)
 {
@@ -45,6 +49,7 @@ char get_modifier(char c, int *len)
 /**
  * flag_hash - write your short description
  * @x: number to format
+ * @flag: 1 for upper hex, 0 for lower
  *
  * Return: string pointer
  */

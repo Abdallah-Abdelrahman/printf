@@ -42,6 +42,7 @@ char *flag_plus(unsigned int x);
 char get_flag(char c, int *len);
 char get_modifier(char c, int *len);
 int _isdigit(int c);
+char *justify(char c, char m, char f, char *arg);
 
 
 /**

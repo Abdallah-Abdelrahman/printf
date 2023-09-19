@@ -21,7 +21,7 @@ char *get_formater(char c, va_list ap, char *res)
 		{"R", (void(*)(void))_Rtoa}, {"S", (void(*)(void))non_printable},
 		{"p", (void(*)(void))_ptoa}, {"n", (void(*)(void))_nchar},
 		{NULL, NULL},
-		{"p", (void(*)(void))_ptoa},{NULL, NULL},
+		{"p", (void(*)(void))_ptoa}, {NULL, NULL},
 	};
 	while (gen[i].c && gen[i].c[0])
 	{
@@ -29,7 +29,7 @@ char *get_formater(char c, va_list ap, char *res)
 		{
 			switch (c)
 			{
-				
+
 
 				case 'd': case 'i':
 					return ((((_int *)gen)[i]).func(va_arg(ap, int)));
