@@ -11,8 +11,6 @@ int format_tester(const char *format)
 {
 	if (!format || (format[0] == '%' && !format[1]) || !format[0])
 		return (0);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (0);
 	return (1);
 }
 /**
@@ -67,8 +65,6 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 				return (NULL);
 			}
 			_strcat(res, str), flag = 0;
-			if (str)
-				free(str);
 		}
 		else
 		{
@@ -82,6 +78,7 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 		}
 		fi++;
 	}
+	free(str);
 	return (res);
 }
 
@@ -113,5 +110,7 @@ char *flag_handler(char *format, int *fi, va_list ap, char *res)
 		free(res);
 		return (NULL);
 	}
+	if (fptr)
+		free(fptr);
 	return (str);
 }

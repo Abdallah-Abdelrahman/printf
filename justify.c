@@ -81,6 +81,7 @@ char *pad(char *buf, int n, int flag)
 	len = _strlen(ptr);
 	ptr = _realloc(ptr, BUFF, len + 1);
 
+	free(buf);
 	return (ptr);
 }
 
