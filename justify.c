@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * justify - write your short description
@@ -10,37 +9,45 @@
  *
  * Return: 0 as exit status
  */
-char *justify(char s, char m, char *f, char *arg)
+char *justify(char s, int m, char *f, char *arg)
 {
-	int i = 0, flag = 1;
+	int i = 0;
 	char *ptr = arg;
 	unsigned int x = atoi(arg);
-
-	(void)m;
+	_fc fc = {0, 0, 0, 0};
 
 	for (i = 0; f[i]; i++)
 	{
-		if (!flag && f[i] == '+')
-		{
-			ptr = 0;
-			return (ptr);
-		}
 		switch (f[i])
 		{
 			case '#':
+				if (fc.h)
+					return (NULL);
+				fc.h = 1;
 				ptr = (s == 'X' ? flag_hash(x, 1) : flag_hash(x, 0));
 				break;
-			case '+':
-				ptr = (flag_plus(x));
-				break;
 			case '-':
+				if (fc.n)
+					return (NULL);
+				fc.n = 1;
+				break;
+			case '+':
+				if (fc.p || fc.s)
+					return (NULL);
+				fc.p = 1;
 				ptr = (flag_plus(x));
 				break;
 			case ' ':
-				flag = 0;
+				if (fc.s || fc.p)
+					return (NULL);
+				fc.s = 1;
 				ptr = (flag_space(x));
 				break;
 		}
+	}
+	if (m)
+	{
+		ptr = pad(ptr, m, !fc.n);
 	}
 
 	return (ptr);
@@ -50,6 +57,7 @@ char *justify(char s, char m, char *f, char *arg)
  * pad - write your short description
  * @buf: buffer
  * @n: padding length
+ * @flag: 1 positive, 0 otherwise
  *
  * Return: string pointer
  */
@@ -59,20 +67,18 @@ char *pad(char *buf, int n, int flag)
 	char *ptr = 0;
 
 	n = n - res;
-
-	printf("pad = %d\n", n);
 	ptr = _realloc(ptr, 0, BUFF);
-	for (i = 0; i < n && n < res; i++)
+
+	for (i = 0; i < n && n > res; i++)
 	{
 		ptr[i] = ' ';
 	}
 	ptr[i] = 0;
 	if (flag)
-		_strcat(ptr, buf);
+		ptr = _strcat(ptr, buf);
 	else
-		_strcat(buf, ptr);
+		ptr = _strcat(buf, ptr);
 	len = _strlen(ptr);
-	printf("ptr = %s, buf = %s\n", ptr, buf);
 	ptr = _realloc(ptr, BUFF, len + 1);
 
 	return (ptr);
@@ -116,44 +122,49 @@ char *get_flag(char *addr, int *idx)
 }
 
 /**
- * get_specifier - check if character is specifier
- * @c: char
+ * power - power
+ * @x: base
+ * @y: power
  *
- * Return: 1 if not specifier,
- * 0 otherwise
+ * Return: power
  */
-int get_specifier(char c)
+int power(int x, int y)
 {
-
-	switch (c)
+	if (y == 0)
+		return (1);
+	while (--y)
 	{
-
-
-		case 'd': case 'i': case 's':
-		case 'u': case 'o': case 'x': case 'X':
-			return (0);
-		default:
-			return (1);
+		x *= x;
 	}
+	return (x);
 }
 /**
  * get_modifier - check to see if there's any modifiers length
  * Description: modifiers range 0-9
- * @c: character digit
- * @idx: current cursor of buffer
+ * @fmt: format
+ * @idx: current cursor of format
  *
  * Return: modifier on success,
  * 0 otherwise.
  */
-char get_modifier(char c, int *idx)
+int get_modifier(char *fmt, int *idx)
 {
-	char m = 0;
+	int m = 0, i = 0, j = 0, d;
 
-	if (_isdigit(c))
+	while (_isdigit(fmt[i]))
 	{
+		i++;
 		*idx += 1;
-		m = c;
+	}
+	while (i)
+	{
+		d = fmt[j] - 48;
+		m += d * power(10, i - 1);
+		i--;
+		j++;
 	}
 
 	return (m);
 }
+
+

@@ -41,13 +41,28 @@ char *flag_hash(unsigned int x, int flag);
 char *flag_space(unsigned int x);
 char *flag_plus(unsigned int x);
 char *get_flag(char *c, int *len);
-char get_modifier(char c, int *len);
+int get_modifier(char *fmt, int *idx);
 int _isdigit(int c);
-char *justify(char c, char m, char *f, char *arg);
+char *justify(char c, int m, char *f, char *arg);
 char *pad(char *buf, int n, int flag);
 int get_specifier(char c);
+int power(int, int);
+char *flag_handler(char *format, int *fi, va_list ap, char *res);
 
-
+/**
+ * struct _flag_count - flags struct
+ * @h: hash
+ * @s: space
+ * @p: positive
+ * @n: negative
+ */
+typedef struct _flag_count
+{
+	int h;
+	int s;
+	int p;
+	int n;
+} _fc;
 /**
  * struct _flags - flags struct
  * @c: character specifier

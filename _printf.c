@@ -48,9 +48,8 @@ int _printf(const char *format, ...)
  */
 char *_make_result(const char *format, char *res, va_list ap, int buf)
 {
-	int	len = 0, fi = 0, flag = 0;
-	char *str = NULL, tc, *ptrcpy = 0;
-	char *fptr, mchar;
+	int len = 0, fi = 0, flag = 0;
+	char *str = NULL, tc;
 
 	while (format[fi])
 	{
@@ -58,20 +57,7 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 			flag = 1, fi++;
 		if (flag && format[fi] != '%')
 		{
-			/* TODO: handle Flags, Modifiers, Precisions, Field length */
-			/* TODO: length of written buffer must increase as well */
-			/* WARNING: watchout for `fi` mutation */
-			ptrcpy = (char *)(format + fi);
-			fptr = get_flag(ptrcpy, &fi);
-			/*mchar = get_modifier(format[fi], &fi);*/
-			str = get_formater(format[fi], ap, res);
-			printf("fptr = %s\n", fptr);
-			str = justify(format[fi], mchar, fptr, str);
-			if (!str)
-			{
-				free(res);
-				return (NULL);
-			}
+			str = flag_handler((char *)format, &fi, ap, res);
 			len = _strlen(str);
 			if (len + _strlen(res) >= buf)
 				buf += BUFF, res = _realloc(res, buf - BUFF, buf);
@@ -97,4 +83,35 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 		fi++;
 	}
 	return (res);
+}
+
+/**
+ * flag_handler - handler
+ * @format: format pointer
+ * @fi: format cursor
+ * @ap: argument pointer
+ * @res: result pointer
+ *
+ * Return: modified pointer to string
+ */
+char *flag_handler(char *format, int *fi, va_list ap, char *res)
+{
+	int modifier;
+	char *fptr = 0, *str = 0;
+
+	fptr = get_flag((char *)(format + *fi), fi);
+	modifier = get_modifier((char *)(format + *fi), fi);
+	str = get_formater(format[*fi], ap, res);
+	if (!str)
+	{
+		free(res);
+		return (NULL);
+	}
+	str = justify(format[*fi], modifier, fptr, str);
+	if (!str)
+	{
+		free(res);
+		return (NULL);
+	}
+	return (str);
 }
