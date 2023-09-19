@@ -1,10 +1,7 @@
 #include "main.h"
-#include <stdio.h>
-
 /**
  * non_printable - write your short description
  * @s: string pointer
- *
  * Return: 0 as exit status
  */
 char *non_printable(char *s)
@@ -34,6 +31,7 @@ char *non_printable(char *s)
 			i += len;
 		}
 	}
+	ptr[i] = 0;
 	ptr = _realloc(ptr, BUFF, i + 1);
 	if (!ptr)
 		return (NULL);

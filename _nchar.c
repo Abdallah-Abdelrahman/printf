@@ -7,8 +7,6 @@
  */
 void *_nchar(int *n, char *res)
 {
-	if (!res)
-		return (NULL);
 	*n = _strlen(res);
 	return (malloc(0));
 }
