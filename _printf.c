@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * _printf - prints text according to format
@@ -22,13 +23,15 @@ int _printf(const char *fmt, ...)
 			flag = 1, fi++;
 		if (flag && fmt[fi] != '%')
 		{
-			str = get_formater(fmt[fi], ap);
+			str = get_formater(fmt[fi], ap, res);
 			if (!str)
 				exit(99);
 			len = _strlen(str);
 			if (len + _strlen(res) >= buf)
 				buf += BUFF, res = _realloc(res, buf - BUFF, buf);
-			_strcat(res, str), flag = 0, free(str);
+			_strcat(res, str), flag = 0;
+			if (str)
+				free(str);
 		}
 		else
 		{

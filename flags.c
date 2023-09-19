@@ -1,50 +1,46 @@
 #include "main.h"
 
 /**
- * flags - write your short description
- * @x: number to format
- * @specifier: format character
+ * get_flag - write your short description
+ * @c: number to format
+ * @len: address of buffer length
  *
  * Return: string pointer
  */
-char *flags(unsigned int x, char specifier)
+char get_flag(char c, int *len)
 {
-	char *ptr = malloc(0);
+	char f = 0;
 
-	switch (specifier)
+
+	switch (c)
 	{
-		case 'x':
-			return (flag_hash(x, 0));
-		case 'X':
-			return (flag_hash(x, 1));
 		case '+':
-			return (flag_plus(x));
+		case '#':
+		case '-':
 		case ' ':
-			return (flag_space(x));
+			*len += 1;
+			return (c);
 	}
-
-	return (ptr);
+	return (f);
 }
 /**
- * flag_space - write your short description
- * @x: number to format
+ * get_modifier - write your short description
+ * @c: character to check
+ * @len: address of buffer length
  *
- * Return: string pointer
+ * Return: modifier or 0
  */
-char *flag_space(unsigned int x)
+char get_modifier(char c, int *len)
 {
-	unsigned int len;
-	char *ptr = 0;
+	char m = 0;
 
-	ptr = _realloc(ptr, 0, 2);
-	ptr[0] = ' ';
-	ptr[1] = 0;
-	_strcat(ptr, _utoa(x));
-	len = _strlen(ptr);
-	ptr = _realloc(ptr, 2, len + 3);
-	ptr[len + 2] = 0;
+	if (_isdigit(c))
+	{
+		*len += 1;
+		m = c;
+	}
 
-	return (ptr);
+	return (m);
 }
 /**
  * flag_hash - write your short description
@@ -65,7 +61,7 @@ char *flag_hash(unsigned int x, int flag)
 	len = _strlen(ptr);
 	ptr = _realloc(ptr, 3, len + 4);
 	ptr[len + 3] = 0;
-	
+
 	return (ptr);
 }
 /**
@@ -88,3 +84,14 @@ char *flag_plus(unsigned int x)
 
 	return (ptr);
 }
+/**
+ * _isdigit - checks for a digit (0 through 9).
+ * @c: charater to check.
+ *
+ * Return: 1 if c is digit, 0 otherwise.
+ */
+int _isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
+
