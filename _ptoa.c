@@ -13,7 +13,7 @@ char *_ptoa(void *addr)
 
 	if (!addr)
 	{
-		y = _realloc(y, BUFF, 6);
+		y = _realloc(y, 0, 6);
 		y[0] = 0;
 		_strcat(y, "(nil)");
 		return (y);
