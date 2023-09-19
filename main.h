@@ -24,7 +24,7 @@ int _strcmp(char *s1, char *s2);
 char *_strncat(char *dest, char *src, int n);
 char *_stoa(char *c);
 char *_ctoa(char c);
-char *_btoa(unsigned int n);
+char *_btoa(unsigned int x);
 char *_utoa(unsigned int x);
 char *_otoa(unsigned int x);
 char *_xtoa(unsigned int x);
@@ -34,7 +34,21 @@ char *_Rtoa(char *s);
 char *rot13(char *s);
 char *non_printable(char *s);
 char *_ptoa(void *z);
+char *flag_hash(unsigned int x, int flag);
+char *flag_space(unsigned int x);
+char *flag_plus(unsigned int x);
+char *flags(unsigned int x, char specifier);
 
+/**
+ * struct _flags - flags struct
+ * @c: character specifier
+ * @func: function pointer
+ */
+typedef struct _flags
+{
+	char *c;
+	char *(*func)(unsigned int, char);
+} _flags;
 /**
  * struct _void - void struct
  * @c: character specifier
@@ -45,7 +59,6 @@ typedef struct _void
 	char *c;
 	char *(*func)(void *);
 } _v;
-
 
 /**
  * struct _unsigned_int - unsigned int struct
