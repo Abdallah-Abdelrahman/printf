@@ -25,6 +25,7 @@ char *flag_hash(char *x, int flag)
 		ptr[1] = '\0';
 	}
 	_strcat(ptr, x);
+	free(x);
 
 	return (ptr);
 }
@@ -44,6 +45,7 @@ char *flag_plus(char *x)
 	ptr[1] = 0;
 	_strcat(ptr, x);
 
+	free(x);
 	return (ptr);
 }
 
@@ -62,6 +64,7 @@ char *flag_space(char *x)
 	ptr[1] = 0;
 	_strcat(ptr, x);
 
+	free(x);
 	return (ptr);
 }
 

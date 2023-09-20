@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * format_tester - tests the format str
@@ -56,6 +57,11 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 		if (flag && format[fi] != '%')
 		{
 			str = flag_handler((char *)format, &fi, ap, res);
+			if (!str)
+			{
+				free(res);
+				return (NULL);
+			}
 			len = _strlen(str);
 			if (len + _strlen(res) >= buf)
 				buf += BUFF, res = _realloc(res, buf - BUFF, buf);
@@ -78,7 +84,8 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 		}
 		fi++;
 	}
-	free(str);
+	if (str)
+		free(str);
 	return (res);
 }
 
@@ -94,23 +101,13 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 char *flag_handler(char *format, int *fi, va_list ap, char *res)
 {
 	int modifier;
-	char *fptr = 0, *str = 0;
+	char *fptr = 0;
 
 	fptr = get_flag((char *)(format + *fi), fi);
 	modifier = get_modifier((char *)(format + *fi), fi);
-	str = get_formater(format[*fi], ap, res);
-	if (!str)
-	{
-		free(res);
-		return (NULL);
-	}
-	str = justify(format[*fi], modifier, fptr, str);
-	if (!str)
-	{
-		free(res);
-		return (NULL);
-	}
+	res = get_formater(format[*fi], ap, res);
+	res = justify(format[*fi], modifier, fptr, res);
 	if (fptr)
 		free(fptr);
-	return (str);
+	return (res);
 }
