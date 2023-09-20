@@ -8,9 +8,9 @@
 
 int format_tester(const char *format)
 {
-	if (!format || (format[0] == '%' && !format[1]) || !format[0])
+	if (!format || (format[0] == '%' && format[1] == 0) || format[0] == 0)
 		return (0);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
+	if (format[0] == '%' && format[1] == ' ' && format[2] == 0)
 		return (0);
 	return (1);
 }
@@ -26,9 +26,9 @@ int _printf(const char *format, ...)
 	int  len = 0, buf = BUFF;
 	char *res = NULL;
 
-	res = _realloc(res, 0, buf);
 	if (!res || !format_tester(format))
 		return (-1);
+	res = _realloc(res, 0, buf);
 	va_start(ap, format), res[0] = 0;
 	res = _make_result(format, res, ap, buf);
 	if (!res)
