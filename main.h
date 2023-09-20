@@ -10,8 +10,8 @@
 /* your protos goes here */
 int _put_buffer(char *, int);
 int _printf(const char *format, ...);
-char *_make_result(const char *format, char *res, va_list ap, int buf, int *nul);
-char *_make_result(const char *format, char *res, va_list ap, int buf, int *nul);
+char *_make_result(const char *format, char *res,
+		va_list ap, int buf, int *nul);
 char *get_formater(char c, va_list ap, char *res, int *nul);
 char *_put_str(char *str);
 int _putchar(char);
