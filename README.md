@@ -84,28 +84,4 @@ When an argument is to be printed by printf, there must be an percentage sign `%
 	- th `#` flag should not be used with c, lc, d, i, u, or s types.
 - `0`: When used with the d, i, D(n,p) o, u, x, or X, the 0 flag causes leading 0s to pad the output to the field width. The 0 flag is ignored if precision is specified for an integer or if the - flag is specified.
 
-### Width
 
-
-
-### Filling Extra Space
-
-
-
-### Left & Right Justify Option
-
-
-
-### The Zero-Fill Option
-
-
-
-### Plus, minus, space, and Zero
-
-
-
-### Printing Strings
-
-
-
-### Floating Point

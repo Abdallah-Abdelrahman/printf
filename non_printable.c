@@ -16,8 +16,6 @@ char *non_printable(char *s)
 	for (idx = 0; s && s[idx]; idx++, i++)
 	{
 		c = s[idx];
-		ptr = ((i >= buf) ? _realloc(ptr, buf, buf + BUFF) : ptr);
-		buf = i >= buf ? buf + BUFF : buf;
 		ptr[i] = c;
 		if ((c > 0 && c < 32) || c >= 127)
 		{
