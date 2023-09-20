@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * format_tester - tests the format str
@@ -12,14 +10,16 @@ int format_tester(const char *format)
 {
 	if (!format || (format[0] == '%' && !format[1]) || !format[0])
 		return (0);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (0);
 	return (1);
 }
+
 /**
  * _printf - prints text according to format
  * @format: string input includes formats and modifiers
  * Return: length of printed string
  */
-
 int _printf(const char *format, ...)
 {
 	va_list ap;

@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdlib.h>
 
 /**
  * justify - write your short description
@@ -23,8 +22,7 @@ char *justify(char s, int m, char *f, char *arg)
 			case '#':
 				if (fc.h || fc.s || fc.p)
 					return (NULL);
-				fc.h = 1;
-				ptr = flag_hash(ptr, s == 'o' ? 0 : 1);
+				fc.h = 1, ptr = flag_hash(ptr, s == 'o' ? 0 : 1);
 				break;
 			case '-':
 				if (fc.n)
@@ -34,8 +32,7 @@ char *justify(char s, int m, char *f, char *arg)
 			case '+':
 				if (fc.p || fc.s || fc.h)
 					return (NULL);
-				fc.p = 1;
-				ptr = (flag_plus(ptr));
+				fc.p = 1, ptr = (flag_plus(ptr));
 				break;
 			case ' ':
 				if (fc.s || fc.p || fc.h)
@@ -43,15 +40,15 @@ char *justify(char s, int m, char *f, char *arg)
 				fc.s = 1;
 				ptr = (flag_space(ptr));
 				break;
+			default:
+				return (0);
 		}
 	}
 	if (m)
 	{
 		ptr = pad(ptr, m, !fc.n);
 		if (arg)
-			free(arg);
-	}
-
+			free(arg); }
 	return (ptr);
 }
 
