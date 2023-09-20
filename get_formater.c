@@ -11,6 +11,7 @@
 char *get_formater(char c, va_list ap, char *res, int *nul)
 {
 	int i = 0;
+	char *ptr;
 
 	_generic gen[] = {{"c", (void(*)(void))_ctoa}, {"i", (void(*)(void))_itoa},
 		{"d", (void(*)(void))_itoa}, {"s", (void(*)(void))_stoa},
@@ -33,8 +34,7 @@ char *get_formater(char c, va_list ap, char *res, int *nul)
 					return ((((_str *)gen)[i]).func(va_arg(ap, char *)));
 				case 'c':
 					return ((((_char *)gen)[i]).func(va_arg(ap, int), nul));
-				case 'u': case 'o': case 'x': case 'X':
-				case 'b':
+				case 'u': case 'o': case 'x': case 'X': case 'b':
 					return ((((_ui *)gen)[i]).func(va_arg(ap, unsigned int)));
 				case 'p':
 					return ((((_v *)gen)[i]).func(va_arg(ap, void *)));
@@ -44,6 +44,10 @@ char *get_formater(char c, va_list ap, char *res, int *nul)
 		}
 		i++;
 	}
-	return (NULL);
+	ptr = malloc(3);
+	ptr[0] = '%';
+	ptr[1] = c;
+	ptr[2] = 0;
+	return (ptr);
 }
 
