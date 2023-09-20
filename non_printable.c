@@ -9,7 +9,7 @@ char *non_printable(char *s)
 	int len = 0, i = 0, idx = 0, buf = BUFF;
 	char *ptr = 0, *hex = 0, c;
 
-	if (!s)
+	if (!s || !s[0])
 		s = "(null)";
 	ptr = _realloc(ptr, i, buf);
 	if (!ptr)
