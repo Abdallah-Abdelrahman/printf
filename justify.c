@@ -22,7 +22,7 @@ char *justify(char s, int m, char *f, char *arg)
 			case '#':
 				if (fc.h || fc.s || fc.p)
 					return (NULL);
-				fc.h = 1, ptr = flag_hash(ptr, s == 'o' ? 0 : 1);
+				fc.h = 1, ptr = flag_hash(arg, s == 'o' ? 0 : 1);
 				break;
 			case '-':
 				if (fc.n)
@@ -32,23 +32,20 @@ char *justify(char s, int m, char *f, char *arg)
 			case '+':
 				if (fc.p || fc.s || fc.h)
 					return (NULL);
-				fc.p = 1, ptr = (flag_plus(ptr));
+				fc.p = 1,  ptr = (flag_plus(arg));
 				break;
 			case ' ':
 				if (fc.s || fc.p || fc.h)
 					return (NULL);
 				fc.s = 1;
-				ptr = (flag_space(ptr));
+				ptr = (flag_space(arg));
 				break;
 			default:
-				return (0);
+				return (NULL);
 		}
 	}
 	if (m)
-	{
 		ptr = pad(ptr, m, !fc.n);
-		if (arg)
-			free(arg); }
 	return (ptr);
 }
 
@@ -74,11 +71,21 @@ char *pad(char *buf, int n, int flag)
 	}
 	ptr[i] = 0;
 	if (flag)
+	{
 		ptr = _strcat(ptr, buf);
+		if (buf)
+			free(buf);
+		len = _strlen(ptr);
+		ptr = _realloc(ptr, BUFF, len + 1);
+
+	}
 	else
-		ptr = _strcat(buf, ptr);
-	len = _strlen(ptr);
-	ptr = _realloc(ptr, BUFF, len + 1);
+	{
+		buf = _strcat(buf, ptr);
+		len = _strlen(buf);
+		buf = _realloc(buf, BUFF, len + 1);
+
+	}
 
 	return (ptr);
 }
@@ -99,7 +106,7 @@ char *get_flag(char *addr, int *idx)
 	char *f = 0;
 
 	f = _realloc(f, 0, BUFF);
-	for (i = 0; addr && addr[i] && flag; i++)
+	for (i = 0; addr && addr[i] && flag;  i++)
 	{
 		switch (addr[i])
 		{
@@ -108,15 +115,15 @@ char *get_flag(char *addr, int *idx)
 			case '-':
 			case ' ':
 				*idx += 1;
-				f[j++] = addr[i];
+				f[j] = addr[i];
 				break;
 			default:
 				flag = 0;
 				break;
 		}
 	}
-	f[j] = 0;
-	f = _realloc(f, BUFF, j + 1);
+	f[j++] = 0;
+		f = _realloc(f, BUFF, j + 1);
 	return (f);
 }
 

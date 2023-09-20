@@ -13,20 +13,15 @@ char *non_printable(char *s)
 	if (!s || !s[0])
 		s = "(null)";
 	ptr = _realloc(ptr, i, buf);
-	if (!ptr)
-		return (NULL);
 	for (idx = 0; s && s[idx]; idx++, i++)
 	{
 		c = s[idx];
 		ptr = ((i >= buf) ? _realloc(ptr, buf, buf + BUFF) : ptr);
-		if (!ptr)
-			free(ptr), exit(98);
-
+		buf = i >= buf ? buf + BUFF : buf;
 		ptr[i] = c;
-		if ((c > 0 && c < 32) || c >= 127)
+		if ((c > 0 && c < 32) || c == 127)
 		{
-
-			hex = _Xtoa(c);
+			hex = _Xtoa((unsigned int)c);
 			len = _strlen(hex);
 			ptr[i++] = 92; /* '\\' */
 			ptr[i++] = 120; /* 'x' */
@@ -34,14 +29,19 @@ char *non_printable(char *s)
 				ptr[i] = 48; /* '0' */
 			_strcat(ptr, hex);
 			i += len;
+			if (hex)
+				free(hex);
 		}
 		ptr = ((i >= buf) ? _realloc(ptr, buf, buf + BUFF) : ptr);
+		buf = i >= buf ? buf + BUFF : buf;
 		if (!ptr)
-			free(ptr), exit(98);
-
+		{
+			free(ptr);
+			return (NULL);
+		}
 	}
 	ptr[i] = 0;
-	ptr = _realloc(ptr, BUFF, i + 1);
+	ptr = _realloc(ptr, buf, i + 1);
 	if (!ptr)
 		return (NULL);
 	return (ptr);

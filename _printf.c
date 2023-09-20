@@ -59,17 +59,17 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 			str = flag_handler((char *)format, &fi, ap, res);
 			if (!str)
 			{
-				free(res);
-				return (NULL);
-			}
+				if (res)
+					free(res);
+				return (NULL); }
 			len = _strlen(str);
 			if (len + _strlen(res) >= buf)
 				buf += BUFF, res = _realloc(res, buf - BUFF, buf);
 			if (!res)
 			{
-				free(str);
-				return (NULL);
-			}
+				if (str)
+					free(str);
+				return (NULL); }
 			_strcat(res, str), flag = 0;
 		}
 		else
