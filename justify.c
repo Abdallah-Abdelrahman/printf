@@ -115,15 +115,21 @@ char *get_flag(char *addr, int *idx)
 			case '-':
 			case ' ':
 				*idx += 1;
-				f[j] = addr[i];
+				f[j++] = addr[i];
 				break;
 			default:
 				flag = 0;
 				break;
 		}
 	}
-	f[j++] = 0;
-		f = _realloc(f, BUFF, j + 1);
+	if (!j)
+	{
+		free(f);
+		return (NULL);
+	}
+	f[j] = 0;
+	f = _realloc(f, BUFF, j + 1);
+
 	return (f);
 }
 

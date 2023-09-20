@@ -5,9 +5,10 @@
  * @c: specifier
  * @ap: variable argument pointer
  * @res: result buffer
+ * @nul: null byte char counter
  * Return: string pointer
  */
-char *get_formater(char c, va_list ap, char *res)
+char *get_formater(char c, va_list ap, char *res, int *nul)
 {
 	int i = 0;
 
@@ -31,7 +32,7 @@ char *get_formater(char c, va_list ap, char *res)
 				case 's': case 'S': case 'r': case 'R':
 					return ((((_str *)gen)[i]).func(va_arg(ap, char *)));
 				case 'c':
-					return ((((_char *)gen)[i]).func(va_arg(ap, int)));
+					return ((((_char *)gen)[i]).func(va_arg(ap, int), nul));
 				case 'u': case 'o': case 'x': case 'X':
 				case 'b':
 					return ((((_ui *)gen)[i]).func(va_arg(ap, unsigned int)));

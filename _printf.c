@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdio.h>
+
 
 /**
  * format_tester - tests the format str
@@ -23,7 +25,7 @@ int format_tester(const char *format)
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int  len = 0, buf = BUFF;
+	int  len = 0, buf = BUFF, nul = 0;
 	char *res = NULL;
 
 	if (!format_tester(format))
@@ -32,22 +34,23 @@ int _printf(const char *format, ...)
 	if (!res)
 		exit(100);
 	va_start(ap, format), res[0] = 0;
-	res = _make_result(format, res, ap, buf);
+	res = _make_result(format, res, ap, buf, &nul);
 	if (!res)
 		exit(100);
-	len = _strlen(res), _put_buffer(res, len), va_end(ap), free(res);
+	len = _strlen(res) + nul, _put_buffer(res, len), va_end(ap), free(res);
 	return (len);
 }
-
 /**
  * _make_result - prepares the result pointer for printing
  * @format: string input includes formats and modifiers
  * @res: result pointer
  * @ap: variable argument list
  * @buf: size of buffer
+ * @nul: null byte char counter
  * Return: length of printed string
  */
-char *_make_result(const char *format, char *res, va_list ap, int buf)
+char *_make_result(const char *format, char *res,
+		va_list ap, int buf, int *nul)
 {
 	int len = 0, fi = 0, flag = 0;
 	char *str, tc;
@@ -59,7 +62,7 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 			flag = 1, fi++;
 		if (flag && format[fi] != '%')
 		{
-			str = flag_handler((char *)format, &fi, ap, res);
+			str = flag_handler((char *)format, &fi, ap, res, nul);
 			if (!str)
 			{
 				if (res)
@@ -96,18 +99,19 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
  * @fi: format cursor
  * @ap: argument pointer
  * @res: result pointer
- *
+ * @nul: null byte char counter
  * Return: modified pointer to string
  */
-char *flag_handler(char *format, int *fi, va_list ap, char *res)
+char *flag_handler(char *format, int *fi, va_list ap, char *res, int *nul)
 {
 	int modifier;
 	char *fptr = 0;
 
 	fptr = get_flag((char *)(format + *fi), fi);
 	modifier = get_modifier((char *)(format + *fi), fi);
-	res = get_formater(format[*fi], ap, res);
-	res = justify(format[*fi], modifier, fptr, res);
+	res = get_formater(format[*fi], ap, res, nul);
+	if (fptr || modifier)
+		res = justify(format[*fi], modifier, fptr, res);
 	if (fptr)
 		free(fptr);
 	return (res);

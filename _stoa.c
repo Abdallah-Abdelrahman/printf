@@ -20,9 +20,10 @@ char *_stoa(char *c)
 /**
  * _ctoa - string pointer
  * @c: char
+ * @nul: null byte char counter
  * Return: string pointer
  */
-char *_ctoa(char c)
+char *_ctoa(char c, int *nul)
 {
 	char *str = NULL;
 
@@ -32,7 +33,9 @@ char *_ctoa(char c)
 		str[0] = c;
 		str[1] = 0;
 	}
-	else {
+	else
+	{
+		(*nul)++;
 		str = _realloc(str, 0, 1);
 		str[0] = 0;
 	}

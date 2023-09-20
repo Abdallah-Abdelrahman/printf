@@ -10,8 +10,9 @@
 /* your protos goes here */
 int _put_buffer(char *, int);
 int _printf(const char *format, ...);
-char *_make_result(const char *format, char *res, va_list ap, int buf);
-char *get_formater(char c, va_list ap, char *res);
+char *_make_result(const char *format, char *res, va_list ap, int buf, int *nul);
+char *_make_result(const char *format, char *res, va_list ap, int buf, int *nul);
+char *get_formater(char c, va_list ap, char *res, int *nul);
 char *_put_str(char *str);
 int _putchar(char);
 void _puts(char *s);
@@ -25,7 +26,7 @@ char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 char *_strncat(char *dest, char *src, int n);
 char *_stoa(char *c);
-char *_ctoa(char c);
+char *_ctoa(char c, int *nul);
 char *_btoa(unsigned int x);
 char *_utoa(unsigned int x);
 char *_otoa(unsigned int x);
@@ -47,7 +48,7 @@ char *justify(char c, int m, char *f, char *arg);
 char *pad(char *buf, int n, int flag);
 int get_specifier(char c);
 int power(int, int);
-char *flag_handler(char *format, int *fi, va_list ap, char *res);
+char *flag_handler(char *format, int *fi, va_list ap, char *res, int *nul);
 int _atoi(char *s);
 
 /**
@@ -115,7 +116,7 @@ typedef struct _unsigned_int
 typedef struct _character
 {
 	char *c;
-	char *(*func)(char);
+	char *(*func)(char, int *);
 } _char;
 /**
  * struct _integer - integer struct
