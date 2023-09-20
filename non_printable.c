@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * non_printable - write your short description
  * @s: string pointer

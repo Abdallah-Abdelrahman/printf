@@ -26,7 +26,7 @@ int _strcmp(char *s1, char *s2);
 char *_strncat(char *dest, char *src, int n);
 char *_stoa(char *c);
 char *_ctoa(char c);
-char *_btoa(unsigned int n);
+char *_btoa(unsigned int x);
 char *_utoa(unsigned int x);
 char *_otoa(unsigned int x);
 char *_xtoa(unsigned int x);
@@ -37,6 +37,43 @@ char *rot13(char *s);
 char *non_printable(char *s);
 char *_ptoa(void *z);
 void *_nchar(int  *n, char *res);
+char *flag_hash(char *x, int flag);
+char *flag_space(char *x);
+char *flag_plus(char *x);
+char *get_flag(char *c, int *len);
+int get_modifier(char *fmt, int *idx);
+int _isdigit(int c);
+char *justify(char c, int m, char *f, char *arg);
+char *pad(char *buf, int n, int flag);
+int get_specifier(char c);
+int power(int, int);
+char *flag_handler(char *format, int *fi, va_list ap, char *res);
+int _atoi(char *s);
+
+/**
+ * struct _flag_count - flags struct
+ * @h: hash
+ * @s: space
+ * @p: positive
+ * @n: negative
+ */
+typedef struct _flag_count
+{
+	int h;
+	int s;
+	int p;
+	int n;
+} _fc;
+/**
+ * struct _flags - flags struct
+ * @c: character specifier
+ * @func: function pointer
+ */
+typedef struct _flags
+{
+	char *c;
+	char *(*func)(unsigned int, char);
+} _flags;
 /**
  * struct _void - void struct
  * @c: character specifier

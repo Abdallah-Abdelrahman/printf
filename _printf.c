@@ -1,5 +1,5 @@
 #include "main.h"
-#include <stdarg.h>
+
 /**
  * format_tester - tests the format str
  * @format: string input includes formats and modifiers
@@ -14,12 +14,12 @@ int format_tester(const char *format)
 		return (0);
 	return (1);
 }
+
 /**
  * _printf - prints text according to format
  * @format: string input includes formats and modifiers
  * Return: length of printed string
  */
-
 int _printf(const char *format, ...)
 {
 	va_list ap;
@@ -47,7 +47,7 @@ int _printf(const char *format, ...)
  */
 char *_make_result(const char *format, char *res, va_list ap, int buf)
 {
-	int	len = 0, fi = 0, flag = 0;
+	int len = 0, fi = 0, flag = 0;
 	char *str = NULL, tc;
 
 	while (format[fi])
@@ -56,7 +56,7 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 			flag = 1, fi++;
 		if (flag && format[fi] != '%')
 		{
-			str = get_formater(format[fi], ap, res);
+			str = flag_handler((char *)format, &fi, ap, res);
 			if (!str)
 			{
 				free(res);
@@ -71,8 +71,6 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 				return (NULL);
 			}
 			_strcat(res, str), flag = 0;
-			if (str)
-				free(str);
 		}
 		else
 		{
@@ -86,5 +84,30 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 		}
 		fi++;
 	}
+	if (str)
+		free(str);
+	return (res);
+}
+
+/**
+ * flag_handler - handler
+ * @format: format pointer
+ * @fi: format cursor
+ * @ap: argument pointer
+ * @res: result pointer
+ *
+ * Return: modified pointer to string
+ */
+char *flag_handler(char *format, int *fi, va_list ap, char *res)
+{
+	int modifier;
+	char *fptr = 0;
+
+	fptr = get_flag((char *)(format + *fi), fi);
+	modifier = get_modifier((char *)(format + *fi), fi);
+	res = get_formater(format[*fi], ap, res);
+	res = justify(format[*fi], modifier, fptr, res);
+	if (fptr)
+		free(fptr);
 	return (res);
 }
