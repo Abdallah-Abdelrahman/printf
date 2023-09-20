@@ -27,14 +27,14 @@ int _printf(const char *format, ...)
 	char *res = NULL;
 
 	if (!format_tester(format))
-		return (-1);
+		exit(100);
 	res = _realloc(res, 0, buf);
 	if (!res)
-		return (-1);
+		exit(100);
 	va_start(ap, format), res[0] = 0;
 	res = _make_result(format, res, ap, buf);
 	if (!res)
-		return (-1);
+		exit(100);
 	len = _strlen(res), _put_buffer(res, len), va_end(ap), free(res);
 	return (len);
 }
