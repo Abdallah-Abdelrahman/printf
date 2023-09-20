@@ -50,7 +50,7 @@ int _printf(const char *format, ...)
 char *_make_result(const char *format, char *res, va_list ap, int buf)
 {
 	int len = 0, fi = 0, flag = 0;
-	char *str = NULL, tc;
+	char *str, tc;
 
 	while (format[fi])
 	{
@@ -76,8 +76,7 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 			_strcat(res, str),
 				flag = 0;
 			if (str)
-				free(str);
-		}
+				free(str); }
 		else
 		{
 			if (1 + _strlen(res) >= buf)
@@ -86,13 +85,8 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 				res = _realloc(res, buf - BUFF, buf);
 			}
 			tc = (format[fi]);
-			_strncat(res, &tc, 1), flag = 0;
-		}
-		fi++;
-
-	}
-	/* if (str) */
-	/* 	free(str); */
+			_strncat(res, &tc, 1), flag = 0; }
+		fi++; }
 	return (res);
 }
 
