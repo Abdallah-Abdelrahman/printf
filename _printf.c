@@ -26,9 +26,11 @@ int _printf(const char *format, ...)
 	int  len = 0, buf = BUFF;
 	char *res = NULL;
 
-	if (!res || !format_tester(format))
+	if (!format_tester(format))
 		return (-1);
 	res = _realloc(res, 0, buf);
+	if (!res)
+		return (-1);
 	va_start(ap, format), res[0] = 0;
 	res = _make_result(format, res, ap, buf);
 	if (!res)
