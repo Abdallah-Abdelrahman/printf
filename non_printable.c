@@ -19,7 +19,7 @@ char *non_printable(char *s)
 		ptr = ((i >= buf) ? _realloc(ptr, buf, buf + BUFF) : ptr);
 		buf = i >= buf ? buf + BUFF : buf;
 		ptr[i] = c;
-		if ((c > 0 && c < 32) || c == 127)
+		if ((c > 0 && c < 32) || c >= 127)
 		{
 			hex = _Xtoa((unsigned int)c);
 			len = _strlen(hex);
