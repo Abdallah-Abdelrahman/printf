@@ -26,8 +26,6 @@ char *get_formater(char c, va_list ap, char *res)
 		{
 			switch (c)
 			{
-
-
 				case 'd': case 'i':
 					return ((((_int *)gen)[i]).func(va_arg(ap, int)));
 				case 's': case 'S': case 'r': case 'R':
@@ -41,8 +39,6 @@ char *get_formater(char c, va_list ap, char *res)
 					return ((((_v *)gen)[i]).func(va_arg(ap, void *)));
 				case 'n':
 					return ((((_ip *)gen)[i]).func(va_arg(ap, int *), res));
-				default:
-					return (NULL);
 			}
 		}
 		i++;

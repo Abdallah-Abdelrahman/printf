@@ -15,7 +15,7 @@ char *justify(char s, int m, char *f, char *arg)
 	char *ptr = arg;
 	_fc fc = {0, 0, 0, 0};
 
-	for (i = 0; f[i]; i++)
+	for (i = 0; f && f[i]; i++)
 	{
 		switch (f[i])
 		{
@@ -99,7 +99,7 @@ char *get_flag(char *addr, int *idx)
 	char *f = 0;
 
 	f = _realloc(f, 0, BUFF);
-	for (i = 0; flag; i++)
+	for (i = 0; addr && addr[i] && flag; i++)
 	{
 		switch (addr[i])
 		{
