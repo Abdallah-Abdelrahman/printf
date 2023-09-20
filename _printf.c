@@ -54,6 +54,7 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 
 	while (format[fi])
 	{
+		str = NULL;
 		if (format[fi] == '%')
 			flag = 1, fi++;
 		if (flag && format[fi] != '%')
@@ -72,7 +73,10 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 				if (str)
 					free(str);
 				return (NULL); }
-			_strcat(res, str), flag = 0;
+			_strcat(res, str),
+				flag = 0;
+			if (str)
+				free(str);
 		}
 		else
 		{
@@ -85,9 +89,10 @@ char *_make_result(const char *format, char *res, va_list ap, int buf)
 			_strncat(res, &tc, 1), flag = 0;
 		}
 		fi++;
+
 	}
-	if (str)
-		free(str);
+	/* if (str) */
+	/* 	free(str); */
 	return (res);
 }
 

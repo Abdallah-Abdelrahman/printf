@@ -26,8 +26,15 @@ char *_ctoa(char c)
 {
 	char *str = NULL;
 
-	str = _realloc(str, 0, 2);
-	str[0] = c;
-	str[1] = 0;
+	if (c)
+	{
+		str = _realloc(str, 0, 2);
+		str[0] = c;
+		str[1] = 0;
+	}
+	else {
+		str = _realloc(str, 0, 1);
+		str[0] = 0;
+	}
 	return (str);
 }
