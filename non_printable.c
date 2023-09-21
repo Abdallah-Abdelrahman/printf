@@ -7,9 +7,9 @@
  */
 char *non_printable(char *s)
 {
-	int len = 0, i = 0, j = 0, idx = 0, buf = BUFF;
+	int i = 0, idx = 0, buf = BUFF;
 	int c;
-	char *ptr = 0, *hex = 0;
+	char *ptr = 0;
 
 	if (!s || !s[0])
 		s = "(null)";
