@@ -7,29 +7,22 @@
  */
 char *non_printable(char *s)
 {
-	int len = 0, i = 0, idx = 0, buf = BUFF;
-	char *ptr = 0, *hex = 0, c;
+	int len = 0, i = 0, j = 0, idx = 0, buf = BUFF;
+	int c;
+	char *ptr = 0, *hex = 0;
 
 	if (!s || !s[0])
 		s = "(null)";
 	ptr = _realloc(ptr, i, buf);
-	for (idx = 0; s && s[idx]; idx++, i++)
+	for (idx = 0; s && s[idx]; idx++)
 	{
 		c = s[idx];
-		ptr[i] = c;
 		if ((c > 0 && c < 32) || c >= 127)
 		{
-			hex = _Xtoa((unsigned int)c);
-			len = _strlen(hex);
-			ptr[i++] = 92; /* '\\' */
-			ptr[i++] = 120; /* 'x' */
-			if (len < 2)
-				ptr[i] = 48; /* '0' */
-			_strcat(ptr, hex);
-			i += len;
-			if (hex)
-				free(hex);
+			make_printable(ptr, &i, c);
+			continue;
 		}
+		ptr[i++] = c;
 		ptr = ((i >= buf) ? _realloc(ptr, buf, buf + BUFF) : ptr);
 		buf = i >= buf ? buf + BUFF : buf;
 		if (!ptr)
@@ -43,4 +36,28 @@ char *non_printable(char *s)
 	if (!ptr)
 		return (NULL);
 	return (ptr);
+}
+
+/**
+ * make_printable - make non_printable printable!
+ * @ptr: result pointer
+ * @i: pointer to counter
+ * @c: non_printable character
+ *
+ */
+void make_printable(char *ptr, int *i, int c)
+{
+	char *hex = _Xtoa(c);
+	int len = _strlen(hex);
+
+	ptr[(*i)++] = 92; /* '\\' */
+	ptr[(*i)++] = 120; /* 'x' */
+	if (len < 2)
+		ptr[(*i)++] = 48; /* '0' */
+	ptr[(*i)] = 0;
+	_strcat(ptr, hex);
+	(*i) += len;
+	if (hex)
+		free(hex);
+	hex = 0;
 }
