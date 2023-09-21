@@ -11,7 +11,7 @@ char *non_printable(char *s)
 	int c;
 	char *ptr = 0;
 
-	if (!s || !s[0])
+	if (!s)
 		s = "(null)";
 	ptr = _realloc(ptr, i, buf);
 	for (idx = 0; s && s[idx]; idx++)
