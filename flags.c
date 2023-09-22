@@ -39,6 +39,8 @@ char *flag_plus(char *x)
 {
 	char *ptr = 0;
 
+	if (x[0] == '-')
+		return (x);
 	ptr = _realloc(ptr, 0, 2 + _strlen(x));
 	ptr[0] = '+';
 	ptr[1] = 0;

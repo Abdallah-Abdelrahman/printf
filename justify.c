@@ -80,7 +80,7 @@ char *pad(char *buf, int n, int flag)
 	}
 	else
 	{
-		buf = _strcat(buf, ptr); /*buf wasnt being returned*/
+		buf = _strcat(buf, ptr);
 		if (ptr)
 			free(ptr);
 		len = _strlen(buf);
