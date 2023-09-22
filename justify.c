@@ -12,7 +12,6 @@
 char *justify(char s, int m, char *f, char *arg)
 {
 	int i = 0;
-	char *ptr = arg;
 	_fc fc = {0, 0, 0, 0};
 
 	for (i = 0; f && f[i]; i++)
@@ -22,7 +21,7 @@ char *justify(char s, int m, char *f, char *arg)
 			case '#':
 				if (fc.h || fc.s || fc.p)
 					return (NULL);
-				fc.h = 1, ptr = flag_hash(arg, s == 'o' ? 0 : 1);
+				fc.h = 1, arg = flag_hash(arg, s == 'o' ? 0 : 1);
 				break;
 			case '-':
 				if (fc.n)
@@ -32,21 +31,21 @@ char *justify(char s, int m, char *f, char *arg)
 			case '+':
 				if (fc.p || fc.s || fc.h)
 					return (NULL);
-				fc.p = 1,  ptr = (flag_plus(arg));
+				fc.p = 1,  arg = (flag_plus(arg));
 				break;
 			case ' ':
 				if (fc.s || fc.p || fc.h)
 					return (NULL);
 				fc.s = 1;
-				ptr = (flag_space(arg));
+				arg = (flag_space(arg));
 				break;
 			default:
 				return (NULL);
 		}
 	}
 	if (m)
-		ptr = pad(ptr, m, !fc.n);
-	return (ptr);
+		arg = pad(arg, m, !fc.n);
+	return (arg);
 }
 
 /**
@@ -64,8 +63,7 @@ char *pad(char *buf, int n, int flag)
 
 	n = n - res;
 	ptr = _realloc(ptr, 0, BUFF);
-
-	for (i = 0; i < n && n > res; i++)
+	for (i = 0; i < n; i++)
 	{
 		ptr[i] = ' ';
 	}
@@ -77,17 +75,19 @@ char *pad(char *buf, int n, int flag)
 			free(buf);
 		len = _strlen(ptr);
 		ptr = _realloc(ptr, BUFF, len + 1);
+		return (ptr);
 
 	}
 	else
 	{
-		buf = _strcat(buf, ptr);
+		buf = _strcat(buf, ptr); /*buf wasnt being returned*/
+		if (ptr)
+			free(ptr);
 		len = _strlen(buf);
 		buf = _realloc(buf, BUFF, len + 1);
+		return (buf);
 
 	}
-
-	return (ptr);
 }
 
 /**
@@ -175,7 +175,6 @@ int get_modifier(char *fmt, int *idx)
 		i--;
 		j++;
 	}
-
 	return (m);
 }
 

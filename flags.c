@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * flag_hash - write your short description
  * @x: number to format
@@ -27,7 +26,6 @@ char *flag_hash(char *x, int flag)
 	_strcat(ptr, x);
 	if (x)
 		free(x);
-
 	return (ptr);
 }
 
