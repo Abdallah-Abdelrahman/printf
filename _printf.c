@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 
 /**
@@ -11,8 +10,6 @@
 int format_tester(const char *format)
 {
 	if (!format || (format[0] == '%' && format[1] == 0) || format[0] == 0)
-		return (0);
-	if (format[0] == '%' && format[1] == ' ' && format[2] == 0)
 		return (0);
 	return (1);
 }
@@ -49,6 +46,8 @@ int _printf(const char *format, ...)
  * @nul: null byte char counter
  * Return: length of printed string
  */
+char *_make_result(const char *format, char *res,
+		va_list ap, int buf, int *nul);
 char *_make_result(const char *format, char *res,
 		va_list ap, int buf, int *nul)
 {

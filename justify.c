@@ -142,13 +142,15 @@ char *get_flag(char *addr, int *idx)
  */
 int power(int x, int y)
 {
+	int z = x;
+
 	if (y == 0)
 		return (1);
 	while (--y)
 	{
-		x *= x;
+		z *= x;
 	}
-	return (x);
+	return (z);
 }
 /**
  * get_modifier - check to see if there's any modifiers length

@@ -51,7 +51,7 @@ int power(int, int);
 char *flag_handler(char *format, int *fi, va_list ap, char *res, int *nul);
 int _atoi(char *s);
 void make_printable(char *ptr, int *i, int c);
-
+void _frees_buff(int n, ...);
 /**
  * struct _flag_count - flags struct
  * @h: hash
